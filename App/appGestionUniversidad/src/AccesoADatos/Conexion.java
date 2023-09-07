@@ -1,5 +1,5 @@
 package AccesoADatos;
-
+//PROBANDO BRANCH
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -12,7 +12,7 @@ import javax.swing.JOptionPane;
  * @author cyka
  */
 public class Conexion {
-    private static String url="jdbc:mariadb://localhost/proyecto_transversal";
+    private static String url="jdbc:mariadb://localhost/AppUniversidadUlp";
     private static String usuario="root";
     private static String password="";
 
