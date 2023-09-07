@@ -12,7 +12,11 @@ import javax.swing.JOptionPane;
  * @author cyka
  */
 public class Conexion {
+<<<<<<< HEAD
     private static String url="jdbc:mariadb://localhost/AppUniversidadUlp";
+=======
+    private static String url="jdbc:mariadb://localhost/appuniversidadulp";
+>>>>>>> 9de79d1791bfc92251baebbdd0594c1d9018bba2
     private static String usuario="root";
     private static String password="";
 
