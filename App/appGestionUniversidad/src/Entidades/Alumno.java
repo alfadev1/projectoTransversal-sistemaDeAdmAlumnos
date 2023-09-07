@@ -9,5 +9,6 @@ package Entidades;
  * @author cyka
  */
 public class Alumno {
+    private String descripcion;
     
 }
