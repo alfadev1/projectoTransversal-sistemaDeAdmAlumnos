@@ -14,6 +14,9 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.Date;
 import java.sql.*;
+import java.sql.ResultSet;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.swing.JOptionPane;
 import org.mariadb.jdbc.Statement;
@@ -42,6 +45,28 @@ public class AlumnoData {
         }
         
     }
+    public Alumno buscarAlumno(int id){
+        //ayuuuda chicos ajajjaj
+        //al id que es pasado por parámetro lo guardo un una variable para después utilizarla en el sql
+        int llave=id;
+        String sql="SELECT*  FROM `alumno` WHERE id=llave";
+        try {
+            PreparedStatement ps= con.prepareStatement(sql);
+            
+           ResultSet rs= ps.executeQuery();
+           While (rs.next()){
+            System.out.println("Apellido"+rs.getString("apellido")
+            +"Nombre"+rs.getString("nombre")
+            +"DNI"+ rs.getInt("dni")
+            +"Estado"+rs.getBoolean("estado"));
+           
+        }
+           
+        } catch (SQLException ex) {
+            Logger.getLogger(AlumnoData.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
     
     
 }
