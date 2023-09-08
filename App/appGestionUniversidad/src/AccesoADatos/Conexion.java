@@ -17,10 +17,7 @@ import javax.swing.JOptionPane;
  */
 public class Conexion {
 
-    private static String url="jdbc:mariadb://localhost/appuniversidadulp";
-
-
-
+    private static String url="jdbc:mariadb://localhost/proyectoulp";
     private static String usuario="root";
     private static String password="";
 
@@ -49,6 +46,7 @@ public class Conexion {
             // Setup the connection with the DB
             con = DriverManager.getConnection(url + "?useLegacyDatetimeCode=false&serverTimezone=UTC" + "&user=" + usuario + "&password=" + password);
             JOptionPane.showMessageDialog(null, "conectado");
+            
         }catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error de conexion ");
         }

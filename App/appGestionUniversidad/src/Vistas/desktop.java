@@ -15,7 +15,9 @@ public class desktop extends javax.swing.JPanel {
      */
     public desktop() {
         initComponents();
+        
     }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -42,3 +44,4 @@ public class desktop extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables
 }
+
