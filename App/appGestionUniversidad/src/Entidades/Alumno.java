@@ -10,5 +10,5 @@ package Entidades;
  */
 public class Alumno {
     private String descripcion;
-    
+    private int dni;
 }
