@@ -20,10 +20,10 @@ public class AppGestionUniversidad {
      */
     public static void main(String[] args) {
         
-        Connection con = null;
-        PreparedStatement ps = null;
+        Connection con = null; //Objeto Connection
+        PreparedStatement ps = null; //Objeto PreparedStatement
         
-        con = Conexion.getConexion();
+        con = Conexion.getConexion(); //Llamado al método "getConexion()" que retorna tipo "Connection" y establece la conexión
     }
     
 }
