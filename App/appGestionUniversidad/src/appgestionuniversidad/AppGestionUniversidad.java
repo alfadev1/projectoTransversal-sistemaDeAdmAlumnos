@@ -4,6 +4,11 @@
  */
 package appgestionuniversidad;
 
+
+import java.sql.PreparedStatement;
+import AccesoADatos.Conexion;
+import java.sql.Connection;
+
 /**
  *
  * @author cyka
@@ -14,7 +19,11 @@ public class AppGestionUniversidad {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        
+        Connection con = null;
+        PreparedStatement ps = null;
+        
+        con = Conexion.getConexion();
     }
     
 }
