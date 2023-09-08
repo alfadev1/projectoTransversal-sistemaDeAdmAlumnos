@@ -5,62 +5,69 @@ package Entidades;
  * @author @SimonettaDaniel
  */
 public class Inscripcion {
-    private int idInscripto;
-    private int nota;
-    private int idAlumno;
-    private int idMateria;
+    private int idInscripcion;
+    private Alumno alumno;
+    private Materia materia;
+    private double nota;
 
-    public Inscripcion(int idInscripto, int nota, int idAlumno, int idMateria) {
-        this.idInscripto = idInscripto;
-        this.nota = nota;
-        this.idAlumno = idAlumno;
-        this.idMateria = idMateria;
-    }
-
-    public Inscripcion(int nota, int idAlumno, int idMateria) {
-        this.nota = nota;
-        this.idAlumno = idAlumno;
-        this.idMateria = idMateria;
-    }
-    
     public Inscripcion() {
     }
 
-    public int getIdInscripto() {
-        return idInscripto;
-    }
-
-    public void setIdInscripto(int idInscripto) {
-        this.idInscripto = idInscripto;
-    }
-
-    public int getNota() {
-        return nota;
-    }
-
-    public void setNota(int nota) {
+    public Inscripcion(int idInscripcion, Alumno alumno, Materia materia, double nota) {
+        this.idInscripcion = idInscripcion;
+        this.alumno = alumno;
+        this.materia = materia;
         this.nota = nota;
     }
 
-    public int getIdAlumno() {
-        return idAlumno;
+    public Inscripcion(Alumno alumno, Materia materia, double nota) {
+        this.alumno = alumno;
+        this.materia = materia;
+        this.nota = nota;
     }
 
-    public void setIdAlumno(int idAlumno) {
-        this.idAlumno = idAlumno;
+    public int getIdInscripcion() {
+        return idInscripcion;
     }
 
-    public int getIdMateria() {
-        return idMateria;
+    public void setIdInscripcion(int idInscripcion) {
+        this.idInscripcion = idInscripcion;
     }
 
-    public void setIdMateria(int idMateria) {
-        this.idMateria = idMateria;
+    public Alumno getAlumno() {
+        return alumno;
+    }
+
+    public void setAlumno(Alumno alumno) {
+        this.alumno = alumno;
+    }
+
+    public Materia getMateria() {
+        return materia;
+    }
+
+    public void setMateria(Materia materia) {
+        this.materia = materia;
+    }
+
+    public double getNota() {
+        return nota;
+    }
+
+    public void setNota(double nota) {
+        this.nota = nota;
     }
 
     @Override
     public String toString() {
-        return "Inscripcion{" + "idInscripto=" + idInscripto + ", nota=" + nota + ", idAlumno=" + idAlumno + ", idMateria=" + idMateria + '}';
+        String insc = idInscripcion+" "+alumno.getApellido()+", "+alumno.getNombre()+" "+materia.getNombre();
+        return insc;
     }
+
+    
+    
+    
+
+    
 }
 
