@@ -12,10 +12,10 @@ public class Alumno {
     private String nombre;
     private String apellido;
     private int dni;
-    private Date fNac;
+    private LocalDate fNac;
     private boolean estado;
 
-    public Alumno(int idAlumno, String nombre, String apellido, int dni, Date fNac, boolean estado) {
+    public Alumno(int idAlumno, String nombre, String apellido, int dni, LocalDate fNac, boolean estado) {
         this.idAlumno = idAlumno;
         this.nombre = nombre;
         this.apellido = apellido;
@@ -24,7 +24,7 @@ public class Alumno {
         this.estado = estado;
     }
 
-    public Alumno(String nombre, String apellido, int dni, Date fNac, boolean estado) {
+    public Alumno(String nombre, String apellido, int dni, LocalDate fNac, boolean estado) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.dni = dni;
@@ -67,11 +67,11 @@ public class Alumno {
         this.dni = dni;
     }
 
-    public Date getfNac() {
+    public LocalDate getfNac() {
         return fNac;
     }
 
-    public void setfNac(Date fNac) {
+    public void setfNac(LocalDate fNac) {
         this.fNac = fNac;
     }
 
