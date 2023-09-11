@@ -203,6 +203,7 @@ public class FormAlumView extends javax.swing.JInternalFrame {
 
     private void jBLupaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBLupaActionPerformed
         // TODO add your handling code here:
+        //public Alumno buscarAlumnoPorDNI(int id)
     }//GEN-LAST:event_jBLupaActionPerformed
 
 
