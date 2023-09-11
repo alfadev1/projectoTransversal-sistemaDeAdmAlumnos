@@ -53,7 +53,7 @@ public class AlumnoData {
             PreparedStatement ps= con.prepareStatement(sql);
             
            ResultSet rs= ps.executeQuery();
-           While (rs.next()){ //Daniel:Esta linea me tira como error
+           while (rs.next()){ //Daniel:Esta linea me tira como error
             System.out.println("Apellido"+rs.getString("apellido")
             +"Nombre"+rs.getString("nombre")
             +"DNI"+ rs.getInt("dni")
@@ -64,6 +64,7 @@ public class AlumnoData {
         } catch (SQLException ex) {
             Logger.getLogger(AlumnoData.class.getName()).log(Level.SEVERE, null, ex);
         }
+        return null;
     }
 
     /*EL SUGERIDO QUE ESTA EN LA GUIA:
