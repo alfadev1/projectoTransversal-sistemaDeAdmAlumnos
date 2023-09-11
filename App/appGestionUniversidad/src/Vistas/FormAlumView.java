@@ -201,7 +201,7 @@ public class FormAlumView extends javax.swing.JInternalFrame {
 
     private void jbBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBuscarActionPerformed
         // TODO add your handling code here:
-        ad.buscarAlumnoDni(34525);
+        ad.buscarAlumnoDni(12345678);
     }//GEN-LAST:event_jbBuscarActionPerformed
 
 
