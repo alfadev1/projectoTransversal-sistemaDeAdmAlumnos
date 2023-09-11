@@ -95,6 +95,11 @@ public class MainMenu extends javax.swing.JFrame {
         jMenu3.add(jMenuItem4);
 
         jMenuItem5.setText("Modificación de Notas");
+        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem5ActionPerformed(evt);
+            }
+        });
         jMenu3.add(jMenuItem5);
 
         jMenuBar1.add(jMenu3);
@@ -102,6 +107,11 @@ public class MainMenu extends javax.swing.JFrame {
         jMenu4.setText("Consultas");
 
         jMenuItem6.setText("Alumnos por Materia");
+        jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem6ActionPerformed(evt);
+            }
+        });
         jMenu4.add(jMenuItem6);
 
         jMenuBar1.add(jMenu4);
@@ -154,6 +164,26 @@ public class MainMenu extends javax.swing.JFrame {
         escritorio.add(fiv);
         escritorio.moveToFront(fiv);
     }//GEN-LAST:event_jMenuItem4ActionPerformed
+
+    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
+        // TODO add your handling code here:escritorio.removeAll();
+        escritorio.removeAll();
+        escritorio.repaint();
+        FormNotasView fnv = new FormNotasView();
+        fnv.setVisible(true);
+        escritorio.add(fnv);
+        escritorio.moveToFront(fnv);
+    }//GEN-LAST:event_jMenuItem5ActionPerformed
+
+    private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
+        // TODO add your handling code here:
+        escritorio.removeAll();
+        escritorio.repaint();
+        FormConsuView fcv = new FormConsuView();
+        fcv.setVisible(true);
+        escritorio.add(fcv);
+        escritorio.moveToFront(fcv);
+    }//GEN-LAST:event_jMenuItem6ActionPerformed
 
     /**
      * @param args the command line arguments
