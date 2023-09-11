@@ -99,7 +99,7 @@ public class FormAlumView extends javax.swing.JInternalFrame {
             }
         });
 
-        jBLupa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vistas/favicon-16x16.png"))); // NOI18N
+        jBLupa.setIcon(new javax.swing.ImageIcon("/Vistas/favicon-16x16.png"));
         jBLupa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBLupaActionPerformed(evt);
