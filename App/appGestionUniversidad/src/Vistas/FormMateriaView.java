@@ -72,12 +72,6 @@ public class FormMateriaView extends javax.swing.JInternalFrame {
 
         jLabel5.setText("Estado:");
 
-        jTMatCode.setText("jTextField1");
-
-        jTMatNom.setText("jTextField2");
-
-        jTMatAno.setText("jTextField3");
-
         jButton1.setText("NUEVO");
 
         jButton2.setText("SALIR");
