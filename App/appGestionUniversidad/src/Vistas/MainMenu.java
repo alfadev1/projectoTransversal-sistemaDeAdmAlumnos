@@ -4,6 +4,8 @@
  */
 package Vistas;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author @SimonettaDaniel
@@ -13,6 +15,18 @@ public class MainMenu extends javax.swing.JFrame {
     /**
      * Creates new form MainMenu
      */
+    
+    private void Salir(){
+        String exit[] = {"Salir","Cancelar"};
+        int options = JOptionPane.showOptionDialog(this,"Desea salir de la aplicación?","Finalizar",
+                0,0,null,exit,this);
+        if(options==JOptionPane.YES_OPTION){
+        System.exit(0);
+       }else if(options==JOptionPane.NO_OPTION){
+           System.out.println("Se canceló la salida");
+       }
+    }
+    
     public MainMenu() {
         initComponents();
         setLocationRelativeTo(null);
@@ -42,6 +56,7 @@ public class MainMenu extends javax.swing.JFrame {
         jMenu4 = new javax.swing.JMenu();
         jMenuItem6 = new javax.swing.JMenuItem();
         jMSalirFinal = new javax.swing.JMenu();
+        jMenuExit = new javax.swing.JMenuItem();
 
         jMenuItem1.setText("jMenuItem1");
 
@@ -122,6 +137,15 @@ public class MainMenu extends javax.swing.JFrame {
                 jMSalirFinalActionPerformed(evt);
             }
         });
+
+        jMenuExit.setText("Finalizar Programa");
+        jMenuExit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuExitActionPerformed(evt);
+            }
+        });
+        jMSalirFinal.add(jMenuExit);
+
         jMenuBar1.add(jMSalirFinal);
 
         setJMenuBar(jMenuBar1);
@@ -195,6 +219,11 @@ public class MainMenu extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_jMSalirFinalActionPerformed
 
+    private void jMenuExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuExitActionPerformed
+        // TODO add your handling code here:
+        Salir();
+    }//GEN-LAST:event_jMenuExitActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -238,6 +267,7 @@ public class MainMenu extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuExit;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
