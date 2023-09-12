@@ -21,6 +21,7 @@ public class FormAlumView extends javax.swing.JInternalFrame {
 
     public FormAlumView() {
         initComponents();
+        desactivar();
 
     }
 
@@ -43,13 +44,13 @@ public class FormAlumView extends javax.swing.JInternalFrame {
         jTApeAlum = new javax.swing.JTextField();
         jTNomAlum = new javax.swing.JTextField();
         jRBestadoAlum = new javax.swing.JRadioButton();
-        jButton1 = new javax.swing.JButton();
+        jBNewAlu = new javax.swing.JButton();
         jBSalirAlumno = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jBGuardarAlumno = new javax.swing.JButton();
+        jBDelAlu = new javax.swing.JButton();
+        jBSaveAlu = new javax.swing.JButton();
         jbBuscar = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
-        jDateChooser1 = new com.toedter.calendar.JDateChooser();
+        jDfNac = new com.toedter.calendar.JDateChooser();
 
         setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         setClosable(true);
@@ -94,7 +95,12 @@ public class FormAlumView extends javax.swing.JInternalFrame {
         jLabel6.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         jLabel6.setText("Fecha de nacimiento:");
 
-        jButton1.setText("NUEVO");
+        jBNewAlu.setText("NUEVO");
+        jBNewAlu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBNewAluActionPerformed(evt);
+            }
+        });
 
         jBSalirAlumno.setText("Salir");
         jBSalirAlumno.addActionListener(new java.awt.event.ActionListener() {
@@ -103,12 +109,12 @@ public class FormAlumView extends javax.swing.JInternalFrame {
             }
         });
 
-        jButton3.setText("ELIMINAR");
+        jBDelAlu.setText("ELIMINAR");
 
-        jBGuardarAlumno.setText("GUARDAR");
-        jBGuardarAlumno.addActionListener(new java.awt.event.ActionListener() {
+        jBSaveAlu.setText("GUARDAR");
+        jBSaveAlu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBGuardarAlumnoActionPerformed(evt);
+                jBSaveAluActionPerformed(evt);
             }
         });
 
@@ -130,11 +136,11 @@ public class FormAlumView extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jBNewAlu, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jBDelAlu, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jBGuardarAlumno, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jBSaveAlu, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jBSalirAlumno, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
@@ -150,7 +156,7 @@ public class FormAlumView extends javax.swing.JInternalFrame {
                             .addComponent(jTApeAlum)
                             .addComponent(jTNomAlum)
                             .addComponent(jRBestadoAlum)
-                            .addComponent(jDateChooser1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jDfNac, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
@@ -191,20 +197,20 @@ public class FormAlumView extends javax.swing.JInternalFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel6)
-                    .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jDfNac, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jBGuardarAlumno, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jBNewAlu, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jBDelAlu, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jBSaveAlu, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jBSalirAlumno, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(14, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jBGuardarAlumnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBGuardarAlumnoActionPerformed
+    private void jBSaveAluActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBSaveAluActionPerformed
         // TODO add your handling code here:
         /*try{
         String nombre = jTNomAlum.getText();
@@ -220,7 +226,7 @@ public class FormAlumView extends javax.swing.JInternalFrame {
         }catch(NumberFormatException ex){
             JOptionPane.showMessageDialog(this,"Datos Inválidos");
             return;*/
-    }//GEN-LAST:event_jBGuardarAlumnoActionPerformed
+    }//GEN-LAST:event_jBSaveAluActionPerformed
 
     private void jbBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBuscarActionPerformed
         // TODO add your handling code here:
@@ -232,14 +238,21 @@ public class FormAlumView extends javax.swing.JInternalFrame {
         dispose();
     }//GEN-LAST:event_jBSalirAlumnoActionPerformed
 
+    private void jBNewAluActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBNewAluActionPerformed
+        // TODO add your handling code here:
+        activar();
+        limpiar();
+        jTDniAlum.requestFocus();
+    }//GEN-LAST:event_jBNewAluActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jBGuardarAlumno;
+    private javax.swing.JButton jBDelAlu;
+    private javax.swing.JButton jBNewAlu;
     private javax.swing.JButton jBSalirAlumno;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jBSaveAlu;
     private com.toedter.calendar.JCalendar jCalendar1;
-    private com.toedter.calendar.JDateChooser jDateChooser1;
+    private com.toedter.calendar.JDateChooser jDfNac;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -254,5 +267,26 @@ public class FormAlumView extends javax.swing.JInternalFrame {
     private javax.swing.JTextField jTNomAlum;
     private javax.swing.JButton jbBuscar;
     // End of variables declaration//GEN-END:variables
+    
+    private void desactivar() {
+        jTDniAlum.setEnabled(false);
+        jTApeAlum.setEnabled(false);
+        jTNomAlum.setEnabled(false);
 
+    }
+
+    private void activar() {
+        jTDniAlum.setEnabled(true);
+        jTApeAlum.setEnabled(true);
+        jTNomAlum.setEnabled(true);
+
+    }
+
+    private void limpiar() {
+        jTDniAlum.setText("");
+        jTApeAlum.setText("");
+        jTNomAlum.setText("");
+
+    }
+    
 }

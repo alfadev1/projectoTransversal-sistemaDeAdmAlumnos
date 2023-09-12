@@ -41,11 +41,11 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="jPanel1" alignment="0" max="32767" attributes="0"/>
                   <Group type="102" alignment="0" attributes="0">
-                      <Component id="jButton1" min="-2" pref="94" max="-2" attributes="0"/>
+                      <Component id="jBNewAlu" min="-2" pref="94" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="jButton3" min="-2" pref="94" max="-2" attributes="0"/>
+                      <Component id="jBDelAlu" min="-2" pref="94" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="jBGuardarAlumno" min="-2" pref="94" max="-2" attributes="0"/>
+                      <Component id="jBSaveAlu" min="-2" pref="94" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="jBSalirAlumno" min="-2" pref="94" max="-2" attributes="0"/>
                   </Group>
@@ -63,7 +63,7 @@
                           <Component id="jTApeAlum" max="32767" attributes="0"/>
                           <Component id="jTNomAlum" max="32767" attributes="0"/>
                           <Component id="jRBestadoAlum" min="-2" max="-2" attributes="0"/>
-                          <Component id="jDateChooser1" max="32767" attributes="0"/>
+                          <Component id="jDfNac" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
@@ -119,16 +119,16 @@
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="1" attributes="0">
                   <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
-                  <Component id="jDateChooser1" min="-2" max="-2" attributes="0"/>
+                  <Component id="jDfNac" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jButton1" alignment="3" min="-2" pref="38" max="-2" attributes="0"/>
-                  <Component id="jButton3" alignment="3" min="-2" pref="38" max="-2" attributes="0"/>
-                  <Component id="jBGuardarAlumno" alignment="3" min="-2" pref="38" max="-2" attributes="0"/>
+                  <Component id="jBNewAlu" alignment="3" min="-2" pref="38" max="-2" attributes="0"/>
+                  <Component id="jBDelAlu" alignment="3" min="-2" pref="38" max="-2" attributes="0"/>
+                  <Component id="jBSaveAlu" alignment="3" min="-2" pref="38" max="-2" attributes="0"/>
                   <Component id="jBSalirAlumno" alignment="3" min="-2" pref="38" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace max="32767" attributes="0"/>
+              <EmptySpace pref="14" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -222,10 +222,13 @@
     </Component>
     <Component class="javax.swing.JRadioButton" name="jRBestadoAlum">
     </Component>
-    <Component class="javax.swing.JButton" name="jButton1">
+    <Component class="javax.swing.JButton" name="jBNewAlu">
       <Properties>
         <Property name="text" type="java.lang.String" value="NUEVO"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBNewAluActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="jBSalirAlumno">
       <Properties>
@@ -235,17 +238,17 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBSalirAlumnoActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="jButton3">
+    <Component class="javax.swing.JButton" name="jBDelAlu">
       <Properties>
         <Property name="text" type="java.lang.String" value="ELIMINAR"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="jBGuardarAlumno">
+    <Component class="javax.swing.JButton" name="jBSaveAlu">
       <Properties>
         <Property name="text" type="java.lang.String" value="GUARDAR"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBGuardarAlumnoActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBSaveAluActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JButton" name="jbBuscar">
@@ -261,7 +264,7 @@
         <Property name="text" type="java.lang.String" value="R.I.P. Lupita"/>
       </Properties>
     </Component>
-    <Component class="com.toedter.calendar.JDateChooser" name="jDateChooser1">
+    <Component class="com.toedter.calendar.JDateChooser" name="jDfNac">
     </Component>
   </SubComponents>
 </Form>
