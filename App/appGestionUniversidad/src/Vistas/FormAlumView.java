@@ -24,7 +24,7 @@ public class FormAlumView extends javax.swing.JInternalFrame {
 
     public FormAlumView() {
         initComponents();
-        desactivar();
+//        desactivar();
 
     }
 
@@ -232,9 +232,9 @@ public class FormAlumView extends javax.swing.JInternalFrame {
 
     private void jBNewAluActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBNewAluActionPerformed
         // TODO add your handling code here:
-        activar();
-        limpiar();
-        jTDniAlum.requestFocus();
+//        activar();
+//        limpiar();
+//        jTDniAlum.requestFocus();
         
         try{
         int dni = Integer.parseInt(jTDniAlum.getText());
