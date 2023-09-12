@@ -7,6 +7,7 @@ package Vistas;
 import AccesoADatos.AlumnoData;
 import Entidades.Alumno;
 import java.time.LocalDate;
+import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import javax.swing.JOptionPane;
 
@@ -34,7 +35,6 @@ public class FormAlumView extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jCalendar1 = new com.toedter.calendar.JCalendar();
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
@@ -206,7 +206,7 @@ public class FormAlumView extends javax.swing.JInternalFrame {
                     .addComponent(jBDeleAlu, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jBSaveAlu, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jBSalirAlumno, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(14, Short.MAX_VALUE))
+                .addContainerGap(9, Short.MAX_VALUE))
         );
 
         pack();
@@ -214,6 +214,10 @@ public class FormAlumView extends javax.swing.JInternalFrame {
 
     private void jBSaveAluActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBSaveAluActionPerformed
         // TODO add your handling code here:
+        String fechaStr = jDfNac.getDate().toString();
+        System.out.println(fechaStr);
+        LocalDate fechaNueva = jDfNac.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        System.out.println(fechaNueva.toString());
     }//GEN-LAST:event_jBSaveAluActionPerformed
 
     private void jbBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBuscarActionPerformed
@@ -232,20 +236,22 @@ public class FormAlumView extends javax.swing.JInternalFrame {
         limpiar();
         jTDniAlum.requestFocus();
         
-        /*try{
+        try{
         int dni = Integer.parseInt(jTDniAlum.getText());
         String apellido = jTApeAlum.getText();
         String nombre = jTNomAlum.getText();
-        String fechaStr = jDfNac.getText();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        LocalDate fNac = LocalDate.parse(jDfNac.getText(),formatter);
-        int estado = Integer.parseInt(jRBestadoAlum.getText());
-        AlumnoData.guardarAlumno(dni,apellido,nombre,fechaStr,estado);
+        
+        LocalDate fNac = jDfNac.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+
+        boolean estado = jRBestadoAlum.isSelected();
+        Alumno alumno = new Alumno(nombre, apellido, dni, fNac, estado);
+        ad.guardarAlumno(alumno);
         
         
         }catch(NumberFormatException ex){
             JOptionPane.showMessageDialog(this,"Datos Inválidos");
-            return;*/
+            return;
+        }
         
     }//GEN-LAST:event_jBNewAluActionPerformed
 
@@ -255,7 +261,6 @@ public class FormAlumView extends javax.swing.JInternalFrame {
     private javax.swing.JButton jBNewAlu;
     private javax.swing.JButton jBSalirAlumno;
     private javax.swing.JButton jBSaveAlu;
-    private com.toedter.calendar.JCalendar jCalendar1;
     private com.toedter.calendar.JDateChooser jDfNac;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

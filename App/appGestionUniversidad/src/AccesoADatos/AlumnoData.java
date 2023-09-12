@@ -14,8 +14,6 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.*;
 import java.sql.ResultSet;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -38,8 +36,19 @@ public class AlumnoData {
             ps.setInt(1, alumno.getDni());
             ps.setString(2, alumno.getApellido());
             ps.setString(3, alumno.getNombre());
-            ps.setDate(4, java.sql.Date.valueOf(alumno.getfNac()));
+            java.sql.Date fechaSql = java.sql.Date.valueOf(alumno.getfNac());
+            ps.setDate(4, fechaSql);
             ps.setBoolean(5, alumno.isEstado());
+            ps.executeUpdate();
+            ResultSet rs = ps.getGeneratedKeys();
+            if (rs.next()) {
+                alumno.setIdAlumno(rs.getInt("idAlumno"));
+                JOptionPane.showMessageDialog(null, "Alumno añadido con exito.");          
+
+            }
+//            System.out.println("se ejecuto");
+            ps.close();
+            
 
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Alumno " + ex.getMessage());
@@ -109,7 +118,7 @@ public class AlumnoData {
 
         return alumno;
     }
-    
+
     public List<Alumno> listarAlumnos() {
 
         List<Alumno> alumnos = new ArrayList<>();
