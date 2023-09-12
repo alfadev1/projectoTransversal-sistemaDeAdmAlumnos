@@ -4,6 +4,8 @@
  */
 package Vistas;
 
+import AccesoADatos.Conexion;
+import Entidades.Materia;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.table.DefaultTableModel;
 
@@ -19,7 +21,7 @@ public class FormConsuView extends javax.swing.JInternalFrame {
      */
     public FormConsuView() {
         initComponents();
-        llenarCombo();
+        //llenarCombo();
     }
 
     /**
@@ -174,9 +176,5 @@ public class FormConsuView extends javax.swing.JInternalFrame {
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
 
-    private void llenarCombo(jCBMaterias c) {
-        DefaultComboBoxModel combo = new DefaultComboBoxModel();
-        c.setModel(combo);
-        
-    }
+    
 }    
