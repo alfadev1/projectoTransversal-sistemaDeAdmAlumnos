@@ -41,7 +41,7 @@ public class MainMenu extends javax.swing.JFrame {
         jMenuItem5 = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
         jMenuItem6 = new javax.swing.JMenuItem();
-        jMenu5 = new javax.swing.JMenu();
+        jMSalirFinal = new javax.swing.JMenu();
 
         jMenuItem1.setText("jMenuItem1");
 
@@ -116,8 +116,13 @@ public class MainMenu extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu4);
 
-        jMenu5.setText("Salir");
-        jMenuBar1.add(jMenu5);
+        jMSalirFinal.setText("Salir");
+        jMSalirFinal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMSalirFinalActionPerformed(evt);
+            }
+        });
+        jMenuBar1.add(jMSalirFinal);
 
         setJMenuBar(jMenuBar1);
 
@@ -185,6 +190,11 @@ public class MainMenu extends javax.swing.JFrame {
         escritorio.moveToFront(fcv);
     }//GEN-LAST:event_jMenuItem6ActionPerformed
 
+    private void jMSalirFinalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMSalirFinalActionPerformed
+        // TODO add your handling code here:
+        System.exit(0);
+    }//GEN-LAST:event_jMSalirFinalActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -222,11 +232,11 @@ public class MainMenu extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane escritorio;
+    private javax.swing.JMenu jMSalirFinal;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
-    private javax.swing.JMenu jMenu5;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
