@@ -43,7 +43,7 @@
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="jBNewAlu" min="-2" pref="94" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="jBDelAlu" min="-2" pref="94" max="-2" attributes="0"/>
+                      <Component id="jBDeleAlu" min="-2" pref="94" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="jBSaveAlu" min="-2" pref="94" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -124,7 +124,7 @@
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jBNewAlu" alignment="3" min="-2" pref="38" max="-2" attributes="0"/>
-                  <Component id="jBDelAlu" alignment="3" min="-2" pref="38" max="-2" attributes="0"/>
+                  <Component id="jBDeleAlu" alignment="3" min="-2" pref="38" max="-2" attributes="0"/>
                   <Component id="jBSaveAlu" alignment="3" min="-2" pref="38" max="-2" attributes="0"/>
                   <Component id="jBSalirAlumno" alignment="3" min="-2" pref="38" max="-2" attributes="0"/>
               </Group>
@@ -238,7 +238,7 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBSalirAlumnoActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="jBDelAlu">
+    <Component class="javax.swing.JButton" name="jBDeleAlu">
       <Properties>
         <Property name="text" type="java.lang.String" value="ELIMINAR"/>
       </Properties>

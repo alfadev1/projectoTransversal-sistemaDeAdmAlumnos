@@ -6,6 +6,8 @@ package Vistas;
 
 import AccesoADatos.AlumnoData;
 import Entidades.Alumno;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import javax.swing.JOptionPane;
 
 /**
@@ -46,7 +48,7 @@ public class FormAlumView extends javax.swing.JInternalFrame {
         jRBestadoAlum = new javax.swing.JRadioButton();
         jBNewAlu = new javax.swing.JButton();
         jBSalirAlumno = new javax.swing.JButton();
-        jBDelAlu = new javax.swing.JButton();
+        jBDeleAlu = new javax.swing.JButton();
         jBSaveAlu = new javax.swing.JButton();
         jbBuscar = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
@@ -109,7 +111,7 @@ public class FormAlumView extends javax.swing.JInternalFrame {
             }
         });
 
-        jBDelAlu.setText("ELIMINAR");
+        jBDeleAlu.setText("ELIMINAR");
 
         jBSaveAlu.setText("GUARDAR");
         jBSaveAlu.addActionListener(new java.awt.event.ActionListener() {
@@ -138,7 +140,7 @@ public class FormAlumView extends javax.swing.JInternalFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jBNewAlu, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jBDelAlu, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jBDeleAlu, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jBSaveAlu, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
@@ -201,7 +203,7 @@ public class FormAlumView extends javax.swing.JInternalFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jBNewAlu, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jBDelAlu, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jBDeleAlu, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jBSaveAlu, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jBSalirAlumno, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(14, Short.MAX_VALUE))
@@ -212,20 +214,6 @@ public class FormAlumView extends javax.swing.JInternalFrame {
 
     private void jBSaveAluActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBSaveAluActionPerformed
         // TODO add your handling code here:
-        /*try{
-        String nombre = jTNomAlum.getText();
-        String apellido = jTApeAlum.getText();
-        int dni = Integer.parseInt(jTDniAlum.getText());
-        String fechaStr = jTNac.getText();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        LocalDate fNac = LocalDate.parse(jTNac.getText(),formatter);
-        int estado = Integer.parseInt(jTEstado.getText());
-        AlumnoData.cargarAlumno(nombre,apellido,dni,fNac,estado);
-        
-        
-        }catch(NumberFormatException ex){
-            JOptionPane.showMessageDialog(this,"Datos Inválidos");
-            return;*/
     }//GEN-LAST:event_jBSaveAluActionPerformed
 
     private void jbBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBuscarActionPerformed
@@ -243,11 +231,27 @@ public class FormAlumView extends javax.swing.JInternalFrame {
         activar();
         limpiar();
         jTDniAlum.requestFocus();
+        
+        /*try{
+        int dni = Integer.parseInt(jTDniAlum.getText());
+        String apellido = jTApeAlum.getText();
+        String nombre = jTNomAlum.getText();
+        String fechaStr = jDfNac.getText();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        LocalDate fNac = LocalDate.parse(jDfNac.getText(),formatter);
+        int estado = Integer.parseInt(jRBestadoAlum.getText());
+        AlumnoData.guardarAlumno(dni,apellido,nombre,fechaStr,estado);
+        
+        
+        }catch(NumberFormatException ex){
+            JOptionPane.showMessageDialog(this,"Datos Inválidos");
+            return;*/
+        
     }//GEN-LAST:event_jBNewAluActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jBDelAlu;
+    private javax.swing.JButton jBDeleAlu;
     private javax.swing.JButton jBNewAlu;
     private javax.swing.JButton jBSalirAlumno;
     private javax.swing.JButton jBSaveAlu;
