@@ -46,12 +46,11 @@ public class AlumnoData {
             ResultSet rs = ps.getGeneratedKeys();
             if (rs.next()) {
                 alumno.setIdAlumno(rs.getInt("idAlumno"));
-                JOptionPane.showMessageDialog(null, "Alumno añadido con exito.");          
+                JOptionPane.showMessageDialog(null, "Alumno añadido con exito.");
 
             }
 //            System.out.println("se ejecuto");
             ps.close();
-            
 
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Alumno " + ex.getMessage());
@@ -148,32 +147,43 @@ public class AlumnoData {
         return alumnos;
 
     }
-    
-    public void modificarAlumno(Alumno alumno){
-       String sql="update alumno set dni =?, apellido=?, nombre=?, fechaNac=? where idAlumno=?";
+
+    public void modificarAlumno(Alumno alumno) {
+        String sql = "update alumno set dni =?, apellido=?, nombre=?, fechaNac=? where idAlumno=?";
         try {
-            PreparedStatement ps=con.prepareStatement(sql);
+            PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, alumno.getDni());
             ps.setString(2, alumno.getApellido());
             ps.setString(3, alumno.getNombre());
-            ps.setDate(4,Date.valueOf(alumno.getfNac()));
+            ps.setDate(4, Date.valueOf(alumno.getfNac()));
             ps.setInt(5, alumno.getIdAlumno());
             //se ejecuta la sentencia
             //el executeUpdate devuelve un entero
-            int guardar= ps.executeUpdate();
-            if(guardar==1){
+            int guardar = ps.executeUpdate();
+            if (guardar == 1) {
                 JOptionPane.showMessageDialog(null, "Se guardó correctamente el alumno");
             }
-            
+
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error "+ex.getMessage());
+            JOptionPane.showMessageDialog(null, "Error " + ex.getMessage());
         }
-       
+
     }
-    
-    
-    
-    
-    
-    
+
+    public void eliminarAlumno(int id) {
+        String sql = "DELETE FROM alumno WHERE idAlumno = ? ";
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, id);
+            int fila = ps.executeUpdate();
+            if (fila == 1) {
+                JOptionPane.showMessageDialog(null, "Se eliminó el alumno");
+            }
+            ps.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, " Error al acceder a la tabla Alumno");
+        }
+
+    }
+
 }
