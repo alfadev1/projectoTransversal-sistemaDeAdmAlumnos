@@ -115,6 +115,11 @@ public class FormAlumView extends javax.swing.JInternalFrame {
         });
 
         jBDeleAlu.setText("ELIMINAR");
+        jBDeleAlu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBDeleAluActionPerformed(evt);
+            }
+        });
 
         jBSaveAlu.setText("GUARDAR");
         jBSaveAlu.addActionListener(new java.awt.event.ActionListener() {
@@ -270,6 +275,29 @@ public class FormAlumView extends javax.swing.JInternalFrame {
         }
 
     }//GEN-LAST:event_jBNewAluActionPerformed
+
+    private void jBDeleAluActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBDeleAluActionPerformed
+        // TODO add your handling code here:
+       ////en la guia igual creo que pide que se elimine a partir del id del alumno
+       
+       
+       
+       //parseo el boton jtDNI y lo guardo en una varible  
+       
+        /*int eliminar = Integer.parseInt(jTDniAlum);
+        ad.eliminarAlumno(eliminar);
+        
+        
+        if () {
+            JOptionPane.showMessageDialog(null, "Alumno eliminado exitosamente.");
+        } else {
+            JOptionPane.showMessageDialog(null, "No se pudo eliminar al alumno.");
+        
+        //Alumno AlumnoEliminado = ad.eliminarAlumno(Integer.parseInt(jTDniAlum.getText()));
+        
+       }    
+    */  
+    }//GEN-LAST:event_jBDeleAluActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
