@@ -6,9 +6,12 @@ package Vistas;
 
 import AccesoADatos.AlumnoData;
 import Entidades.Alumno;
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -221,8 +224,22 @@ public class FormAlumView extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jBSaveAluActionPerformed
 
     private void jbBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBuscarActionPerformed
-        // TODO add your handling code here:
-        ad.buscarAlumnoDni(12345678);
+
+        Alumno alumnoBuscado = ad.buscarAlumnoDni(Integer.parseInt(jTDniAlum.getText()));
+        
+        if (alumnoBuscado != null) {
+            jTApeAlum.setText(alumnoBuscado.getApellido());
+            jTNomAlum.setText(alumnoBuscado.getNombre());
+            jRBestadoAlum.setSelected(true);
+            jDfNac.setDate(java.sql.Date.valueOf(alumnoBuscado.getfNac()));
+        } else {
+            jTDniAlum.setText("");
+            jTDniAlum.requestFocus();
+            jTApeAlum.setText("");
+            jTNomAlum.setText("");
+            jRBestadoAlum.setSelected(false);
+            jDfNac.setDate(null);
+        }
     }//GEN-LAST:event_jbBuscarActionPerformed
 
     private void jBSalirAlumnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBSalirAlumnoActionPerformed
@@ -235,24 +252,23 @@ public class FormAlumView extends javax.swing.JInternalFrame {
 //        activar();
 //        limpiar();
 //        jTDniAlum.requestFocus();
-        
-        try{
-        int dni = Integer.parseInt(jTDniAlum.getText());
-        String apellido = jTApeAlum.getText();
-        String nombre = jTNomAlum.getText();
-        
-        LocalDate fNac = jDfNac.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
 
-        boolean estado = jRBestadoAlum.isSelected();
-        Alumno alumno = new Alumno(nombre, apellido, dni, fNac, estado);
-        ad.guardarAlumno(alumno);
-        
-        
-        }catch(NumberFormatException ex){
-            JOptionPane.showMessageDialog(this,"Datos Inválidos");
+        try {
+            int dni = Integer.parseInt(jTDniAlum.getText());
+            String apellido = jTApeAlum.getText();
+            String nombre = jTNomAlum.getText();
+
+            LocalDate fNac = jDfNac.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+
+            boolean estado = jRBestadoAlum.isSelected();
+            Alumno alumno = new Alumno(nombre, apellido, dni, fNac, estado);
+            ad.guardarAlumno(alumno);
+
+        } catch (NumberFormatException ex) {
+            JOptionPane.showMessageDialog(this, "Datos Inválidos");
             return;
         }
-        
+
     }//GEN-LAST:event_jBNewAluActionPerformed
 
 
@@ -276,7 +292,7 @@ public class FormAlumView extends javax.swing.JInternalFrame {
     private javax.swing.JTextField jTNomAlum;
     private javax.swing.JButton jbBuscar;
     // End of variables declaration//GEN-END:variables
-    
+
     private void desactivar() {
         jTDniAlum.setEnabled(false);
         jTApeAlum.setEnabled(false);
@@ -297,5 +313,5 @@ public class FormAlumView extends javax.swing.JInternalFrame {
         jTNomAlum.setText("");
 
     }
-    
+
 }

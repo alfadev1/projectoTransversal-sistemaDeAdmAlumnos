@@ -88,7 +88,7 @@ public class AlumnoData {
         return alumno;
     }
 
-    public Alumno buscarAlumnoDni(int dni) {
+    public Alumno buscarAlumnoDni (int dni) {
         Alumno alumno = null;
 
         String sql = "SELECT * FROM alumno WHERE dni = ? AND estado = 1";
@@ -110,6 +110,7 @@ public class AlumnoData {
                 System.out.println(alumno.getIdAlumno());
             } else {
                 JOptionPane.showMessageDialog(null, "No existe el alumno");
+                return null;
             }
 
         } catch (SQLException ex) {
