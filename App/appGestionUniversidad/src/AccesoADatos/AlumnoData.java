@@ -14,6 +14,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.*;
 import java.sql.ResultSet;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -154,10 +155,18 @@ public class AlumnoData {
             PreparedStatement ps=con.prepareStatement(sql);
             ps.setInt(1, alumno.getDni());
             ps.setString(2, alumno.getApellido());
-            ps.setString(2, alumno.getNombre());
+            ps.setString(3, alumno.getNombre());
+            ps.setDate(4,Date.valueOf(alumno.getfNac()));
+            ps.setInt(5, alumno.getIdAlumno());
+            //se ejecuta la sentencia
+            //el executeUpdate devuelve un entero
+            int guardar= ps.executeUpdate();
+            if(guardar==1){
+                JOptionPane.showMessageDialog(null, "Se guardó correctamente el alumno");
+            }
             
         } catch (SQLException ex) {
-            Logger.getLogger(AlumnoData.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "Error "+ex.getMessage());
         }
        
     }
