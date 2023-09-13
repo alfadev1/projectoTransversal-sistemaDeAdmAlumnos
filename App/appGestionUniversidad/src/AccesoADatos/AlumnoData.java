@@ -16,6 +16,8 @@ import java.sql.*;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.swing.JOptionPane;
 
@@ -145,4 +147,24 @@ public class AlumnoData {
         return alumnos;
 
     }
+    
+    public void modificarAlumno(Alumno alumno){
+       String sql="update alumno set dni =?, apellido=?, nombre=?, fechaNac=? where idAlumno=?";
+        try {
+            PreparedStatement ps=con.prepareStatement(sql);
+            ps.setInt(1, alumno.getDni());
+            ps.setString(2, alumno.getApellido());
+            ps.setString(2, alumno.getNombre());
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(AlumnoData.class.getName()).log(Level.SEVERE, null, ex);
+        }
+       
+    }
+    
+    
+    
+    
+    
+    
 }
