@@ -1,12 +1,8 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
- */
 package appgestionuniversidad;
 
 
 import java.sql.PreparedStatement;
-import AccesoADatos.Conexion;
+import AccesoADatos.*;
 import java.sql.Connection;
 
 /**
@@ -22,8 +18,14 @@ public class AppGestionUniversidad {
         
         Connection con = null; //Objeto Connection
         PreparedStatement ps = null; //Objeto PreparedStatement
-        
         con = Conexion.getConexion(); //Llamado al método "getConexion()" que retorna tipo "Connection" y establece la conexión
+        
+        /*Test inscripcion como esta en el video==>
+        AlumnoData ad = new AlumnoData();
+        MateriaData md = new MateriaData();
+        InscripcionData id = new InscripcionData();
+        */
+        
     }
     
 }
