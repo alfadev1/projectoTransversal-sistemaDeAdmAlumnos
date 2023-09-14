@@ -170,11 +170,11 @@ public class AlumnoData {
 
     }
 
-    public void eliminarAlumno(int id) {
-        String sql = "DELETE FROM alumno WHERE idAlumno = ? ";
+    public void eliminarAlumno(int dni) {
+        String sql = "DELETE FROM alumno WHERE dni = ? ";
         try {
             PreparedStatement ps = con.prepareStatement(sql);
-            ps.setInt(1, id);
+            ps.setInt(1, dni);
             int fila = ps.executeUpdate();
             if (fila == 1) {
                 JOptionPane.showMessageDialog(null, "Se eliminó el alumno");
