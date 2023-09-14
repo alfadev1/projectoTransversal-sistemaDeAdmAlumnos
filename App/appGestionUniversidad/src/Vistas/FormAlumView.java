@@ -28,6 +28,7 @@ public class FormAlumView extends javax.swing.JInternalFrame {
     public FormAlumView() {
         initComponents();
 //        desactivar();
+        desactivarBotones();
 
     }
 
@@ -233,7 +234,7 @@ public class FormAlumView extends javax.swing.JInternalFrame {
     private void jBSaveAluActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBSaveAluActionPerformed
         // TODO add your handling code here:
         Alumno alumnoBuscado = ad.buscarAlumnoDni(Integer.parseInt(jTDniAlum.getText()));
-        
+
         try {
             //alumnoBuscado.setDni(Integer.parseInt(jTDniAlum.getText()));
             alumnoBuscado.setApellido(jTApeAlum.getText());
@@ -242,9 +243,8 @@ public class FormAlumView extends javax.swing.JInternalFrame {
             alumnoBuscado.setfNac(jDfNac.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
 
             alumnoBuscado.setEstado(jRBestadoAlum.isSelected());
-            
+
             ad.modificarAlumno(alumnoBuscado);
-            
 
         } catch (NumberFormatException ex) {
             JOptionPane.showMessageDialog(this, "Datos Inválidos");
@@ -262,6 +262,7 @@ public class FormAlumView extends javax.swing.JInternalFrame {
             jTNomAlum.setText(alumnoBuscado.getNombre());
             jRBestadoAlum.setSelected(true);
             jDfNac.setDate(java.sql.Date.valueOf(alumnoBuscado.getfNac()));
+            activarBotones();
         } else {
             jTDniAlum.setText("");
             jTDniAlum.requestFocus();
@@ -315,20 +316,20 @@ public class FormAlumView extends javax.swing.JInternalFrame {
             jRBestadoAlum.setSelected(false);
 
         } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(null, "Error "+ "Los valores no corresponden");
+            JOptionPane.showMessageDialog(null, "Error " + "Los valores no corresponden");
         }
 
 
     }//GEN-LAST:event_jBDeleAluActionPerformed
 
     private void jbLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbLimpiarActionPerformed
-        
+
         jTDniAlum.setText("");
         jTApeAlum.setText("");
         jTNomAlum.setText("");
         jRBestadoAlum.setSelected(false);
         jDfNac.setDate(null);
-        
+
     }//GEN-LAST:event_jbLimpiarActionPerformed
 
 
@@ -358,7 +359,6 @@ public class FormAlumView extends javax.swing.JInternalFrame {
         jTDniAlum.setEnabled(false);
         jTApeAlum.setEnabled(false);
         jTNomAlum.setEnabled(false);
-
     }
 
     private void activar() {
@@ -373,6 +373,16 @@ public class FormAlumView extends javax.swing.JInternalFrame {
         jTApeAlum.setText("");
         jTNomAlum.setText("");
 
+    }
+
+    private void desactivarBotones() {
+        jBSaveAlu.setEnabled(false);
+        jBDeleAlu.setEnabled(false);
+    }
+
+    private void activarBotones() {
+        jBSaveAlu.setEnabled(true);
+        jBDeleAlu.setEnabled(true);
     }
 
 }
