@@ -1,16 +1,9 @@
 package Vistas;
 
-import AccesoADatos.AlumnoData;
-import AccesoADatos.Conexion;
-import AccesoADatos.InscripcionData;
-import AccesoADatos.MateriaData;
-import Entidades.Materia;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
+import AccesoADatos.*;
+import Entidades.*;
+import java.sql.*;
+import java.util.*;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
@@ -21,12 +14,10 @@ import javax.swing.table.DefaultTableModel;
  * @author @SimonettaDaniel
  */
 public class FormConsuView extends javax.swing.JInternalFrame {
-    private DefaultTableModel modelo=new DefaultTableModel(){
-        
-        public boolean isCellEditable(int x, int y){
-            return false;
-        }
-    };
+    AlumnoData ad;
+    MateriaData md;
+    InscripcionData id;
+    List ListaMaterias;
 
     /**
      * Creates new form FormConsuView
@@ -34,8 +25,11 @@ public class FormConsuView extends javax.swing.JInternalFrame {
  
     public FormConsuView() {
         initComponents();
+        ad = new AlumnoData();
+        md = new MateriaData();
+        id = new InscripcionData();
         llenarCombo();
-        cargarTabla();
+        //cargarTabla();
     }
 
     /**
@@ -185,6 +179,7 @@ public class FormConsuView extends javax.swing.JInternalFrame {
     private void jCBMateriasItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jCBMateriasItemStateChanged
         // TODO add your handling code here:
         //Tal vez sea por acá?
+        //cargarTabla();
     }//GEN-LAST:event_jCBMateriasItemStateChanged
 
 
@@ -201,16 +196,24 @@ public class FormConsuView extends javax.swing.JInternalFrame {
     // End of variables declaration//GEN-END:variables
 
     private void llenarCombo() {
-        
-        DefaultComboBoxModel combo = new DefaultComboBoxModel();
-        MateriaData md = new MateriaData();
-        jCBMaterias.addItem(md.listarMaterias().toString());
-        
+        jCBMaterias.removeAllItems();
+        ListaMaterias = md.listarMaterias();
+        Iterator i = ListaMaterias.iterator();
+        while (i.hasNext()){
+            Materia materia = (Materia) i.next();
+            jCBMaterias.addItem(materia.toString());
+        }
+
     }//Funciona pero no funciona USTEDES ME ENTIENDEN(???)
 
     private void cargarTabla() {
-        jTMatList.setModel(modelo);
-        InscripcionData id = new InscripcionData();
-        //id.obtenerAlumnoXMateria();
+        DefaultTableModel modelo = new DefaultTableModel() {
+
+            public boolean isCellEditable(int f, int c) {
+                return false;
+            }
+        };
+//        String cabecera[]={"ID","DNI","Apellido","Nombre"};
+//        modelo.setColumnIdentifiers(cabecera);
     }
-}    
+}
