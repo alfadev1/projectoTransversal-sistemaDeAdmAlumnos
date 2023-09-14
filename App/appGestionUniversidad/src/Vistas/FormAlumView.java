@@ -277,26 +277,20 @@ public class FormAlumView extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jBNewAluActionPerformed
 
     private void jBDeleAluActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBDeleAluActionPerformed
-        // TODO add your handling code here:
-       ////en la guia igual creo que pide que se elimine a partir del id del alumno
+        try {
+            int dni = Integer.parseInt(jTDniAlum.getText());
+            if (jTDniAlum.getText() != null) {
+             ad.eliminarAlumno(dni);
+
+            }
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Campo vacio");
+        }
        
-       
-       
-       //parseo el boton jtDNI y lo guardo en una varible  
-       
-        /*int eliminar = Integer.parseInt(jTDniAlum);
-        ad.eliminarAlumno(eliminar);
-        
-        
-        if () {
-            JOptionPane.showMessageDialog(null, "Alumno eliminado exitosamente.");
-        } else {
-            JOptionPane.showMessageDialog(null, "No se pudo eliminar al alumno.");
-        
-        //Alumno AlumnoEliminado = ad.eliminarAlumno(Integer.parseInt(jTDniAlum.getText()));
-        
-       }    
-    */  
+      
+ 
+      
     }//GEN-LAST:event_jBDeleAluActionPerformed
 
 
