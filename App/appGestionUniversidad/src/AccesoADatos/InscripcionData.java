@@ -136,11 +136,15 @@ public class InscripcionData {
         return cursadas;
     }
     
-    public List<Materia> obtenerMateriaCursadas(int id){
+    public List<Materia> obtenerMateriaCursadas(int idAlumno){
     List<Materia> materiasCursadas = new ArrayList<>();
         
         String sql = "SELECT inscripcion.idMateria, nombre, ano FROM inscripcion JOIN materia "
                 + "ON(inscripcion.idMateria=materia.idMateria) WHERE inscripcion.idAlumno = ?;";
+//      String sql = "SELECT inscripcion.idMateria, nombre, ano FROM inscripcion,"
+//                + "materia WHERE inscripcion.idMateria = materia.idMateria"
+//                + "AND inscripcion.idAlumno = ?;";
+//Asi lo implementa el pelado
         try (PreparedStatement ps = con.prepareStatement(sql); ResultSet rs = ps.executeQuery();) {
             ps.setInt(1, rs.getInt("idAlumno"));
             while (rs.next()) {
@@ -155,7 +159,7 @@ public class InscripcionData {
             JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Base de Datos" + ex.getMessage());
         }
 
-        return materiasCursadas;//El video lo implementa de otra manera
+        return materiasCursadas;
     }
     
     public List<Materia> obtenerMateriasNOCursadas(int id){
@@ -168,6 +172,8 @@ public class InscripcionData {
                 + "    FROM Inscripcion I\n"
                 + "    WHERE I.idAlumno = ?\n"
                 + ");";
+//      String sql = "SELECT * FROM materia WHERE estado = 1 AND idMateria not in"
+//                + "(SELECT idMateria FROM inscripcion WHERE idAlumno = ?)";
         try (PreparedStatement ps = con.prepareStatement(sql); ResultSet rs = ps.executeQuery();) {
             ps.setInt(1, rs.getInt("idAlumno"));
             while (rs.next()) {

@@ -98,6 +98,11 @@ public class FormConsuView extends javax.swing.JInternalFrame {
         jLabel4.setText("Seleccione una materia:");
 
         jCBMaterias.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jCBMaterias.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jCBMateriasItemStateChanged(evt);
+            }
+        });
         jCBMaterias.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jCBMateriasActionPerformed(evt);
@@ -177,6 +182,11 @@ public class FormConsuView extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jCBMateriasActionPerformed
 
+    private void jCBMateriasItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jCBMateriasItemStateChanged
+        // TODO add your handling code here:
+        //Tal vez sea por acá?
+    }//GEN-LAST:event_jCBMateriasItemStateChanged
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBSalirConsu;
@@ -196,7 +206,7 @@ public class FormConsuView extends javax.swing.JInternalFrame {
         MateriaData md = new MateriaData();
         jCBMaterias.addItem(md.listarMaterias().toString());
         
-    }
+    }//Funciona pero no funciona USTEDES ME ENTIENDEN(???)
 
     private void cargarTabla() {
         jTMatList.setModel(modelo);
