@@ -136,11 +136,54 @@ public class InscripcionData {
         return cursadas;
     }
     
-    /*public List<Materia> obtenerMateriaCursadas(int id){  
+    public List<Materia> obtenerMateriaCursadas(int id){
+    List<Materia> materiasCursadas = new ArrayList<>();
+        
+        String sql = "SELECT inscripcion.idMateria, nombre, ano FROM inscripcion JOIN materia "
+                + "ON(inscripcion.idMateria=materia.idMateria) WHERE inscripcion.idAlumno = ?;";
+        try (PreparedStatement ps = con.prepareStatement(sql); ResultSet rs = ps.executeQuery();) {
+            ps.setInt(1, rs.getInt("idAlumno"));
+            while (rs.next()) {
+                Materia mat= new Materia();
+                mat.setIdMateria(rs.getInt("idMateria"));
+                mat.setNombre(rs.getString("nombre"));
+                mat.setAno(rs.getInt("ano"));
+                materiasCursadas.add(mat);
+            }
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Base de Datos" + ex.getMessage());
+        }
+
+        return materiasCursadas;//El video lo implementa de otra manera
     }
     
-    public List<Materia> obtenerMateriasNOCursadas(int id){   
-    }*/
+    public List<Materia> obtenerMateriasNOCursadas(int id){
+    List<Materia> materiasNOCursadas = new ArrayList<>();
+        
+        String sql = "SELECT M.idMateria, M.nombre, M.ano\n"
+                + "FROM Materia M\n"
+                + "WHERE M.idMateria NOT IN (\n"
+                + "    SELECT I.idMateria\n"
+                + "    FROM Inscripcion I\n"
+                + "    WHERE I.idAlumno = ?\n"
+                + ");";
+        try (PreparedStatement ps = con.prepareStatement(sql); ResultSet rs = ps.executeQuery();) {
+            ps.setInt(1, rs.getInt("idAlumno"));
+            while (rs.next()) {
+                Materia mat= new Materia();
+                mat.setIdMateria(rs.getInt("idMateria"));
+                mat.setNombre(rs.getString("nombre"));
+                mat.setAno(rs.getInt("ano"));
+                materiasNOCursadas.add(mat);
+            }
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Base de Datos" + ex.getMessage());
+        }
+
+        return materiasNOCursadas;
+    }
     
     public List<Alumno> obtenerAlumnoXMateria(int idMateria){
        ArrayList<Alumno> alumnosxmateria = new ArrayList<>();
