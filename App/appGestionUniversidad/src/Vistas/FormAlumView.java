@@ -56,6 +56,7 @@ public class FormAlumView extends javax.swing.JInternalFrame {
         jbBuscar = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
         jDfNac = new com.toedter.calendar.JDateChooser();
+        jbLimpiar = new javax.swing.JButton();
 
         setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         setClosable(true);
@@ -100,14 +101,14 @@ public class FormAlumView extends javax.swing.JInternalFrame {
         jLabel6.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         jLabel6.setText("Fecha de nacimiento:");
 
-        jBNewAlu.setText("NUEVO");
+        jBNewAlu.setText("GUARDAR");
         jBNewAlu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBNewAluActionPerformed(evt);
             }
         });
 
-        jBSalirAlumno.setText("Salir");
+        jBSalirAlumno.setText("SALIR");
         jBSalirAlumno.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBSalirAlumnoActionPerformed(evt);
@@ -121,7 +122,7 @@ public class FormAlumView extends javax.swing.JInternalFrame {
             }
         });
 
-        jBSaveAlu.setText("GUARDAR");
+        jBSaveAlu.setText("MODIFICAR");
         jBSaveAlu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBSaveAluActionPerformed(evt);
@@ -136,6 +137,13 @@ public class FormAlumView extends javax.swing.JInternalFrame {
         });
 
         jLabel7.setText("R.I.P. Lupita");
+
+        jbLimpiar.setText("Limpiar");
+        jbLimpiar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbLimpiarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -169,10 +177,12 @@ public class FormAlumView extends javax.swing.JInternalFrame {
                             .addComponent(jDfNac, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jbBuscar)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jbBuscar)
+                                    .addComponent(jbLimpiar))
+                                .addGap(0, 0, Short.MAX_VALUE)))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -192,15 +202,15 @@ public class FormAlumView extends javax.swing.JInternalFrame {
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabel3)
-                                    .addComponent(jTApeAlum, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(18, 18, 18))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel7)
-                                .addGap(31, 31, 31)))
+                                    .addComponent(jTApeAlum, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jbLimpiar)))
+                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel4)
-                            .addComponent(jTNomAlum, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jTNomAlum, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel7))
                         .addGap(34, 34, 34)
                         .addComponent(jLabel5))
                     .addComponent(jRBestadoAlum))
@@ -222,16 +232,31 @@ public class FormAlumView extends javax.swing.JInternalFrame {
 
     private void jBSaveAluActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBSaveAluActionPerformed
         // TODO add your handling code here:
-        String fechaStr = jDfNac.getDate().toString();
-        System.out.println(fechaStr);
-        LocalDate fechaNueva = jDfNac.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-        System.out.println(fechaNueva.toString());
+        Alumno alumnoBuscado = ad.buscarAlumnoDni(Integer.parseInt(jTDniAlum.getText()));
+        
+        try {
+            //alumnoBuscado.setDni(Integer.parseInt(jTDniAlum.getText()));
+            alumnoBuscado.setApellido(jTApeAlum.getText());
+            alumnoBuscado.setNombre(jTNomAlum.getText());
+
+            alumnoBuscado.setfNac(jDfNac.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
+
+            alumnoBuscado.setEstado(jRBestadoAlum.isSelected());
+            
+            ad.modificarAlumno(alumnoBuscado);
+            
+
+        } catch (NumberFormatException ex) {
+            JOptionPane.showMessageDialog(this, "Datos Inválidos");
+            return;
+        }
+
     }//GEN-LAST:event_jBSaveAluActionPerformed
 
     private void jbBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBuscarActionPerformed
 
         Alumno alumnoBuscado = ad.buscarAlumnoDni(Integer.parseInt(jTDniAlum.getText()));
-        
+
         if (alumnoBuscado != null) {
             jTApeAlum.setText(alumnoBuscado.getApellido());
             jTNomAlum.setText(alumnoBuscado.getNombre());
@@ -280,18 +305,31 @@ public class FormAlumView extends javax.swing.JInternalFrame {
         try {
             int dni = Integer.parseInt(jTDniAlum.getText());
             if (jTDniAlum.getText() != null) {
-             ad.eliminarAlumno(dni);
+                ad.eliminarAlumno(dni);
 
             }
+            jTApeAlum.setText("");
+            jTDniAlum.setText("");
+            jTNomAlum.setText("");
+            jDfNac.setDate(null);
+            jRBestadoAlum.setSelected(false);
 
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Campo vacio");
         }
-       
-      
- 
-      
+
+
     }//GEN-LAST:event_jBDeleAluActionPerformed
+
+    private void jbLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbLimpiarActionPerformed
+        
+        jTDniAlum.setText("");
+        jTApeAlum.setText("");
+        jTNomAlum.setText("");
+        jRBestadoAlum.setSelected(false);
+        jDfNac.setDate(null);
+        
+    }//GEN-LAST:event_jbLimpiarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -313,6 +351,7 @@ public class FormAlumView extends javax.swing.JInternalFrame {
     private javax.swing.JTextField jTDniAlum;
     private javax.swing.JTextField jTNomAlum;
     private javax.swing.JButton jbBuscar;
+    private javax.swing.JButton jbLimpiar;
     // End of variables declaration//GEN-END:variables
 
     private void desactivar() {

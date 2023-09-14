@@ -149,19 +149,20 @@ public class AlumnoData {
     }
 
     public void modificarAlumno(Alumno alumno) {
-        String sql = "update alumno set dni =?, apellido=?, nombre=?, fechaNac=? where idAlumno=?";
+        String sql = "update alumno set apellido=?, nombre=?, fechaNac=?, estado=? where idAlumno=?";
         try {
             PreparedStatement ps = con.prepareStatement(sql);
-            ps.setInt(1, alumno.getDni());
-            ps.setString(2, alumno.getApellido());
-            ps.setString(3, alumno.getNombre());
-            ps.setDate(4, Date.valueOf(alumno.getfNac()));
+            //ps.setInt(1, alumno.getDni());
+            ps.setString(1, alumno.getApellido());
+            ps.setString(2, alumno.getNombre());
+            ps.setDate(3, Date.valueOf(alumno.getfNac()));
+            ps.setBoolean(4, alumno.isEstado());
             ps.setInt(5, alumno.getIdAlumno());
             //se ejecuta la sentencia
             //el executeUpdate devuelve un entero
             int guardar = ps.executeUpdate();
             if (guardar == 1) {
-                JOptionPane.showMessageDialog(null, "Se guardó correctamente el alumno");
+                JOptionPane.showMessageDialog(null, "Se modificaron correctamente los datos");
             }
 
         } catch (SQLException ex) {
@@ -178,6 +179,8 @@ public class AlumnoData {
             int fila = ps.executeUpdate();
             if (fila == 1) {
                 JOptionPane.showMessageDialog(null, "Se eliminó el alumno");
+            } else if (fila == 0) {
+                JOptionPane.showMessageDialog(null, "No se encontró un alumno con ese DNI");
             }
             ps.close();
         } catch (SQLException ex) {
