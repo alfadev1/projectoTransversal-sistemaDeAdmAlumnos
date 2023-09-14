@@ -284,8 +284,8 @@ public class FormAlumView extends javax.swing.JInternalFrame {
 
             }
 
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Campo vacio");
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "Error "+ "Los valores no corresponden");
         }
        
       
