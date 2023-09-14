@@ -136,5 +136,39 @@ public class InscripcionData {
         return cursadas;
     }
     
+    /*public List<Materia> obtenerMateriaCursadas(int id){  
+    }
+    
+    public List<Materia> obtenerMateriasNOCursadas(int id){   
+    }*/
+    
+    public List<Alumno> obtenerAlumnoXMateria(int idMateria){
+       ArrayList<Alumno> alumnosxmateria = new ArrayList<>();
+        
+        try {
+            String sql = "SELECT a.idAlumno,dni,nombre,apellido,fechaNac,estado WHERE idAlumno"
+                    +"FROM inscripcion i, alumno a WHERE i.idAlumno=a.idAlumno AND idMateria = ? AND a.estado=1";//Corroboren como lo tienen en sus bases porque ya me agarro una embolia
+            PreparedStatement ps = con.prepareCall(sql);
+            ps.setInt(1, idMateria);
+            ResultSet rs=ps.executeQuery();
+            while (rs.next()) {
+                Alumno axm = new Alumno();
+                axm.setIdAlumno(rs.getInt("idAlumno"));
+                axm.setDni(rs.getInt("dni"));
+                axm.setNombre("nombre");
+                axm.setApellido("apellido");
+                axm.setfNac(rs.getDate("fechaNac").toLocalDate());
+                axm.setEstado(rs.getBoolean("estado"));
+                alumnosxmateria.add(axm);
+                
+            }
+            ps.close();
+            
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error de acceso" + ex.getMessage());
+        }
+        return alumnosxmateria; 
+    }
+    
 } 
 

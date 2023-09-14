@@ -1,12 +1,19 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JInternalFrame.java to edit this template
- */
 package Vistas;
 
+import AccesoADatos.AlumnoData;
 import AccesoADatos.Conexion;
+import AccesoADatos.InscripcionData;
+import AccesoADatos.MateriaData;
 import Entidades.Materia;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JComboBox;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -14,14 +21,21 @@ import javax.swing.table.DefaultTableModel;
  * @author @SimonettaDaniel
  */
 public class FormConsuView extends javax.swing.JInternalFrame {
-    
+    private DefaultTableModel modelo=new DefaultTableModel(){
+        
+        public boolean isCellEditable(int x, int y){
+            return false;
+        }
+    };
 
     /**
      * Creates new form FormConsuView
      */
+ 
     public FormConsuView() {
         initComponents();
-        //llenarCombo();
+        llenarCombo();
+        cargarTabla();
     }
 
     /**
@@ -40,7 +54,7 @@ public class FormConsuView extends javax.swing.JInternalFrame {
         jLabel4 = new javax.swing.JLabel();
         jCBMaterias = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jTMatList = new javax.swing.JTable();
         jBSalirConsu = new javax.swing.JButton();
 
         jLabel1.setText("jLabel1");
@@ -90,7 +104,7 @@ public class FormConsuView extends javax.swing.JInternalFrame {
             }
         });
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jTMatList.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -109,7 +123,7 @@ public class FormConsuView extends javax.swing.JInternalFrame {
                 return types [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(jTMatList);
 
         jBSalirConsu.setText("Salir");
         jBSalirConsu.addActionListener(new java.awt.event.ActionListener() {
@@ -173,8 +187,20 @@ public class FormConsuView extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable jTMatList;
     // End of variables declaration//GEN-END:variables
 
-    
+    private void llenarCombo() {
+        
+        DefaultComboBoxModel combo = new DefaultComboBoxModel();
+        MateriaData md = new MateriaData();
+        jCBMaterias.addItem(md.listarMaterias().toString());
+        
+    }
+
+    private void cargarTabla() {
+        jTMatList.setModel(modelo);
+        InscripcionData id = new InscripcionData();
+        //id.obtenerAlumnoXMateria();
+    }
 }    
