@@ -201,7 +201,7 @@ public class InscripcionData {
             String sql = "SELECT a.idAlumno, a.dni, a.apellido, a.nombre, a.fechaNac, a.estado FROM `inscripcion`  "
                 + "JOIN alumno a ON(a.idAlumno=inscripcion.idAlumno)  "
                 + "JOIN materia m ON(m.idMateria=inscripcion.idMateria) WHERE inscripcion.idMateria= ?;" ;
-            PreparedStatement ps = con.prepareCall(sql);
+            PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, idMateria);
             ResultSet rs=ps.executeQuery();
             while (rs.next()) {

@@ -248,7 +248,7 @@ private void armarCabecera() {
         List<Alumno> Lista = ad.listarAlumnos();
         jCBAlumnos.removeAllItems();
         for(int i = 0; i<Lista.size(); i++){
-            jCBAlumnos.addItem(Lista.get(i).getNombre());
+            jCBAlumnos.addItem(Lista.get(i).getNombre()+", "+Lista.get(i).getApellido());
         }
     }
 
