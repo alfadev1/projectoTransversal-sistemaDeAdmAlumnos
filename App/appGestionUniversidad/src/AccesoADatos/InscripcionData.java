@@ -195,8 +195,12 @@ public class InscripcionData {
        ArrayList<Alumno> alumnosxmateria = new ArrayList<>();
         
         try {
-            String sql = "SELECT a.idAlumno,dni,nombre,apellido,fechaNac,estado WHERE idAlumno"
-                    +"FROM inscripcion i, alumno a WHERE i.idAlumno=a.idAlumno AND idMateria = ? AND a.estado=1";//Corroboren como lo tienen en sus bases porque ya me agarro una embolia
+//            String sql = "SELECT a.idAlumno,dni,nombre,apellido,fechaNac,estado WHERE idAlumno"
+//                    +"FROM inscripcion i, alumno a WHERE i.idAlumno=a.idAlumno AND idMateria = ? AND a.estado=1";
+//Lo cambie porque me tiraba error. Corroboren si les pasa lo mismo.
+            String sql = "SELECT a.idAlumno, a.dni, a.apellido, a.nombre, a.fechaNac, a.estado FROM `inscripcion`  "
+                + "JOIN alumno a ON(a.idAlumno=inscripcion.idAlumno)  "
+                + "JOIN materia m ON(m.idMateria=inscripcion.idMateria) WHERE inscripcion.idMateria= ?;" ;
             PreparedStatement ps = con.prepareCall(sql);
             ps.setInt(1, idMateria);
             ResultSet rs=ps.executeQuery();
