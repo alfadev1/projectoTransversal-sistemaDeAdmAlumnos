@@ -220,6 +220,6 @@ public class FormConsuView extends javax.swing.JInternalFrame {
 
     private void cargarTabla() {
         
-        List<Alumno> Tabla = id.obtenerAlumnoXMateria(jCBMaterias.getSelectedIndex());        
+        List<Alumno> Tabla = id.obtenerAlumnoXMateria(jCBMaterias.getSelectedIndex());
     }
 }
