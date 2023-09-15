@@ -30,7 +30,7 @@ public class FormConsuView extends javax.swing.JInternalFrame {
         md = new MateriaData();
         id = new InscripcionData();
         llenarCombo();
-        //armarCabecera();
+        armarCabecera();
         //cargarTabla();
     }
 
