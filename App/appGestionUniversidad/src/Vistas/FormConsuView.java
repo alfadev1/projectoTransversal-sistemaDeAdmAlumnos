@@ -30,7 +30,7 @@ public class FormConsuView extends javax.swing.JInternalFrame {
         md = new MateriaData();
         id = new InscripcionData();
         llenarCombo();
-        armarCabecera();
+        //armarCabecera();
         //cargarTabla();
     }
 
@@ -171,12 +171,13 @@ public class FormConsuView extends javax.swing.JInternalFrame {
 
     private void jCBMateriasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCBMateriasActionPerformed
         // TODO add your handling code here:
+        cargarTabla();
     }//GEN-LAST:event_jCBMateriasActionPerformed
 
     private void jCBMateriasItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jCBMateriasItemStateChanged
         // TODO add your handling code here:
         //Tal vez sea por acá?
-        //cargarTabla();
+        
     }//GEN-LAST:event_jCBMateriasItemStateChanged
 
 
@@ -220,6 +221,14 @@ public class FormConsuView extends javax.swing.JInternalFrame {
 
     private void cargarTabla() {
         
-        List<Alumno> Tabla = id.obtenerAlumnoXMateria(jCBMaterias.getSelectedIndex());
+        List<Alumno> Tabla = id.obtenerAlumnoXMateria((int)jCBMaterias.getSelectedIndex());
+        DefaultTableModel modelo = new DefaultTableModel();
+        modelo.setColumnIdentifiers(new Object[]{"ID","DNI","Apellido","Nombre"});
+        if (Tabla!=null){
+            for (Alumno alumno : Tabla){
+                Object[] objeto = {alumno.getIdAlumno(), alumno.getDni(), alumno.getApellido(), alumno.getNombre()};
+                modelo.addRow(objeto);
+            }
+        }
     }
 }
