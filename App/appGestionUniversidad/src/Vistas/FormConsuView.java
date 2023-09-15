@@ -17,7 +17,6 @@ public class FormConsuView extends javax.swing.JInternalFrame {
     AlumnoData ad;
     MateriaData md;
     InscripcionData id;
-    List ListaMaterias;
 
     /**
      * Creates new form FormConsuView
@@ -196,15 +195,12 @@ public class FormConsuView extends javax.swing.JInternalFrame {
     // End of variables declaration//GEN-END:variables
 
     private void llenarCombo() {
+        List<Materia> Lista = md.listarMaterias();
         jCBMaterias.removeAllItems();
-        ListaMaterias = md.listarMaterias();
-        Iterator i = ListaMaterias.iterator();
-        while (i.hasNext()){
-            Materia materia = (Materia) i.next();
-            jCBMaterias.addItem(materia.toString());
+        for(int i = 0; i<Lista.size(); i++){
+            jCBMaterias.addItem(Lista.get(i).getNombre());
         }
-
-    }//Funciona pero no funciona USTEDES ME ENTIENDEN(???)
+    }//Ahora funciona
 
     private void cargarTabla() {
         DefaultTableModel modelo = new DefaultTableModel() {
