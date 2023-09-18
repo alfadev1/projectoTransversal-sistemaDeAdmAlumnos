@@ -307,7 +307,6 @@ public class FormAlumView extends javax.swing.JInternalFrame {
             int dni = Integer.parseInt(jTDniAlum.getText());
             if (jTDniAlum.getText() != null) {
                 ad.eliminarAlumno(dni);
-
             }
             jTApeAlum.setText("");
             jTDniAlum.setText("");

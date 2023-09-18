@@ -97,7 +97,7 @@ public class InscripcionData {
                 Inscripcion insc = new Inscripcion();
                 insc.setIdInscripcion(rs.getInt("idInscripto")); //Acá fijense el nombre que tengan en sus bases, por las dudas.
                 Alumno alu = ad.buscarAlumno(rs.getInt("idAlumno"));
-                Materia mat = md.buscarMateria(rs.getInt("idMateria"));
+                Materia mat = md.buscarMateriaPorId(rs.getInt("idMateria"));
                 insc.setAlumno(alu);
                 insc.setMateria(mat);
                 insc.setNota(rs.getDouble("Nota"));
@@ -122,7 +122,7 @@ public class InscripcionData {
                 Inscripcion insc = new Inscripcion();
                 insc.setIdInscripcion(rs.getInt("idInscripto"));
                 Alumno alu = ad.buscarAlumno(rs.getInt("idAlumno"));
-                Materia mat = md.buscarMateria(rs.getInt("idMateria"));
+                Materia mat = md.buscarMateriaPorId(rs.getInt("idMateria"));
                 insc.setAlumno(alu);
                 insc.setMateria(mat);
                 insc.setNota(rs.getDouble("Nota"));
