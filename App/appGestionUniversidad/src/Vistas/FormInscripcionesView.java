@@ -20,6 +20,13 @@ import javax.swing.table.DefaultTableModel;
  */
 public class FormInscripcionesView extends javax.swing.JInternalFrame {
     AlumnoData ad;
+    InscripcionData ID;
+    DefaultTableModel modelo = new DefaultTableModel() {
+
+            public boolean isCellEditable(int f, int c) {
+                return false;
+            }
+        };
 
     /**
      * Creates new form FormInscripcionesView
@@ -109,6 +116,11 @@ public class FormInscripcionesView extends javax.swing.JInternalFrame {
         jRBInsc.setText("Materias Inscriptas");
 
         jRBNoInsc.setText("Materias no inscriptas");
+        jRBNoInsc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRBNoInscActionPerformed(evt);
+            }
+        });
 
         jBInsc.setText("INSCRIBIR");
         jBInsc.addActionListener(new java.awt.event.ActionListener() {
@@ -211,6 +223,18 @@ public class FormInscripcionesView extends javax.swing.JInternalFrame {
         dispose();
     }//GEN-LAST:event_jBSalirInscActionPerformed
 
+    private void jRBNoInscActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRBNoInscActionPerformed
+        // TODO add your handling code here:
+        
+        //List<Materia> materiasNoCursadas = ID.obtenerMateriasNOCursadas( jCBAlumnos.getSelectedItem());
+        for (Materia mat : ID.obtenerMateriasNOCursadas(WIDTH)) {
+            
+        }
+        if (jRBNoInsc.isSelected()) {
+            modelo.addRow(new Object[] {});
+        }
+    }//GEN-LAST:event_jRBNoInscActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBAnuInsc;
@@ -228,12 +252,7 @@ public class FormInscripcionesView extends javax.swing.JInternalFrame {
     private javax.swing.JTable jTInsc;
     // End of variables declaration//GEN-END:variables
 private void armarCabecera() {
-        DefaultTableModel modelo = new DefaultTableModel() {
-
-            public boolean isCellEditable(int f, int c) {
-                return false;
-            }
-        };
+        
         modelo.addColumn("ID");
         modelo.addColumn("Nombre");
         modelo.addColumn("Año");
