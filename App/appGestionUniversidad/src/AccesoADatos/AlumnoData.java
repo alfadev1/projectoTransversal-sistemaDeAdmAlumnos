@@ -87,6 +87,8 @@ public class AlumnoData {
 
         return alumno;
     }
+    
+    
 
     public Alumno buscarAlumnoDni (int dni) {
         Alumno alumno = null;

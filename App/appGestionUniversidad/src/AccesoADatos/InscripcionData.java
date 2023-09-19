@@ -145,8 +145,10 @@ public class InscripcionData {
 //                + "materia WHERE inscripcion.idMateria = materia.idMateria"
 //                + "AND inscripcion.idAlumno = ?;";
 //Asi lo implementa el pelado
-        try (PreparedStatement ps = con.prepareStatement(sql); ResultSet rs = ps.executeQuery();) {
-            ps.setInt(1, rs.getInt("idAlumno"));
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, idAlumno);
+            ResultSet rs = ps.executeQuery();            
             while (rs.next()) {
                 Materia mat= new Materia();
                 mat.setIdMateria(rs.getInt("idMateria"));
@@ -174,8 +176,10 @@ public class InscripcionData {
                 + ");";
 //      String sql = "SELECT * FROM materia WHERE estado = 1 AND idMateria not in"
 //                + "(SELECT idMateria FROM inscripcion WHERE idAlumno = ?)";
-        try (PreparedStatement ps = con.prepareStatement(sql); ResultSet rs = ps.executeQuery();) {
-            ps.setInt(1, rs.getInt("idAlumno"));
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);            
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 Materia mat= new Materia();
                 mat.setIdMateria(rs.getInt("idMateria"));
@@ -187,7 +191,6 @@ public class InscripcionData {
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Base de Datos" + ex.getMessage());
         }
-
         return materiasNOCursadas;
     }
     

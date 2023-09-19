@@ -19,14 +19,15 @@ import javax.swing.table.DefaultTableModel;
  * @author @SimonettaDaniel
  */
 public class FormInscripcionesView extends javax.swing.JInternalFrame {
+
     AlumnoData ad;
-    InscripcionData ID;
+    InscripcionData id = new InscripcionData();
     DefaultTableModel modelo = new DefaultTableModel() {
 
-            public boolean isCellEditable(int f, int c) {
-                return false;
-            }
-        };
+        public boolean isCellEditable(int f, int c) {
+            return false;
+        }
+    };
 
     /**
      * Creates new form FormInscripcionesView
@@ -89,7 +90,7 @@ public class FormInscripcionesView extends javax.swing.JInternalFrame {
 
         jLabel2.setText("Seleccionar alumno:");
 
-        jCBAlumnos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jCBAlumnos.setModel(new javax.swing.DefaultComboBoxModel<>(new Alumno[] {}));
 
         jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
@@ -114,6 +115,11 @@ public class FormInscripcionesView extends javax.swing.JInternalFrame {
         );
 
         jRBInsc.setText("Materias Inscriptas");
+        jRBInsc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRBInscActionPerformed(evt);
+            }
+        });
 
         jRBNoInsc.setText("Materias no inscriptas");
         jRBNoInsc.addActionListener(new java.awt.event.ActionListener() {
@@ -225,22 +231,40 @@ public class FormInscripcionesView extends javax.swing.JInternalFrame {
 
     private void jRBNoInscActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRBNoInscActionPerformed
         // TODO add your handling code here:
+        borrarFilas();
+        // Realizar una conversión de tipo para obtener un objeto de MiObjeto
+        Alumno alu = (Alumno) jCBAlumnos.getSelectedItem();
+        int id = alu.getIdAlumno();        
+
+        List<Materia> materiasNoCursadas = this.id.obtenerMateriasNOCursadas( id);
+        for (Materia mat : this.id.obtenerMateriasNOCursadas(id)) {
+            if (jRBNoInsc.isSelected()) {
+                modelo.addRow(new Object[]{mat.getIdMateria(), mat.getNombre(), mat.getAno()});
+            }
+        }   
         
-        //List<Materia> materiasNoCursadas = ID.obtenerMateriasNOCursadas( jCBAlumnos.getSelectedItem());
-        for (Materia mat : ID.obtenerMateriasNOCursadas(WIDTH)) {
-            
-        }
-        if (jRBNoInsc.isSelected()) {
-            modelo.addRow(new Object[] {});
-        }
     }//GEN-LAST:event_jRBNoInscActionPerformed
+
+    private void jRBInscActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRBInscActionPerformed
+        // TODO add your handling code here:
+        borrarFilas();
+        Alumno alu = (Alumno) jCBAlumnos.getSelectedItem();
+        int id = alu.getIdAlumno();        
+
+        List<Materia> materiasCursadas = this.id.obtenerMateriaCursadas( id);
+        for (Materia mat : this.id.obtenerMateriaCursadas(id)) {
+            if (jRBInsc.isSelected()) {
+                modelo.addRow(new Object[]{mat.getIdMateria(), mat.getNombre(), mat.getAno()});
+            }
+        }  
+    }//GEN-LAST:event_jRBInscActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBAnuInsc;
     private javax.swing.JButton jBInsc;
     private javax.swing.JButton jBSalirInsc;
-    private javax.swing.JComboBox<String> jCBAlumnos;
+    private javax.swing.JComboBox<Alumno> jCBAlumnos;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -252,7 +276,7 @@ public class FormInscripcionesView extends javax.swing.JInternalFrame {
     private javax.swing.JTable jTInsc;
     // End of variables declaration//GEN-END:variables
 private void armarCabecera() {
-        
+
         modelo.addColumn("ID");
         modelo.addColumn("Nombre");
         modelo.addColumn("Año");
@@ -262,12 +286,22 @@ private void armarCabecera() {
         DefaultTableCellRenderer headerRenderer = (DefaultTableCellRenderer) jTInsc.getTableHeader().getDefaultRenderer();
         headerRenderer.setHorizontalAlignment(SwingConstants.CENTER);
     }
-    
+
     private void llenarCombo() {
-        List<Alumno> Lista = ad.listarAlumnos();
+        List<Alumno> lista = ad.listarAlumnos();
         jCBAlumnos.removeAllItems();
-        for(int i = 0; i<Lista.size(); i++){
-            jCBAlumnos.addItem(Lista.get(i).getNombre()+", "+Lista.get(i).getApellido());
+//        for (int i = 0; i < Lista.size(); i++) {
+//            jCBAlumnos.addItem(Lista.get(i).getNombre() + ", " + Lista.get(i).getApellido());
+//        }
+        for (Alumno alumno : lista) {
+            jCBAlumnos.addItem(alumno);
+        }
+
+    }
+    private void borrarFilas() {
+        int filas = modelo.getRowCount() - 1;
+        for (; filas >= 0; filas--) {
+            modelo.removeRow(filas);
         }
     }
 
