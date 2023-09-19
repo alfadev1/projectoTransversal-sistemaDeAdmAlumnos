@@ -218,6 +218,7 @@ public class FormConsuView extends javax.swing.JInternalFrame {
             jCBMaterias.addItem(Lista.get(i).getNombre());
         }
     }//Ahora funciona
+    //hola
 
     private void cargarTabla() {
         
