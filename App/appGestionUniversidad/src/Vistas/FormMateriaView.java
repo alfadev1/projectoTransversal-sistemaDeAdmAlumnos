@@ -22,8 +22,8 @@ public class FormMateriaView extends javax.swing.JInternalFrame {
      */
     public FormMateriaView() {
         initComponents();
-        jBEliminar.disable();
-        jBModificar.disable();
+        jBEliminar.setEnabled(false);
+        jBModificar.setEnabled(false);
        
        
     }
@@ -218,7 +218,7 @@ public class FormMateriaView extends javax.swing.JInternalFrame {
             jBModificar.enable();
             jBEliminar.enable();
             id = materiaBuscada.getIdMateria();
-            System.out.println(id);
+            
         }      
     }//GEN-LAST:event_jBBuscarActionPerformed
 
