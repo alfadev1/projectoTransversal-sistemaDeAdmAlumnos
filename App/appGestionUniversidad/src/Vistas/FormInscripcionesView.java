@@ -236,6 +236,14 @@ public class FormInscripcionesView extends javax.swing.JInternalFrame {
 
     private void jBAnuInscActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAnuInscActionPerformed
         // TODO add your handling code here:
+        try {
+            int insc = jTInsc.getSelectedRow();
+            Alumno alu= (Alumno)jCBAlumnos.getSelectedItem();
+             Materia mat=new Materia((int)modelo.getValueAt(insc, 0), (String)modelo.getValueAt(insc, 1),(int)modelo.getValueAt(insc, 2),true);
+             id.borrarInscripcionMateriaAlumno(alu.getIdAlumno(), mat.getIdMateria());
+        } catch (ArrayIndexOutOfBoundsException e) {
+            JOptionPane.showMessageDialog(this, "Datos sin seleccionar");
+        }
     }//GEN-LAST:event_jBAnuInscActionPerformed
 
     private void jBSalirInscActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBSalirInscActionPerformed
