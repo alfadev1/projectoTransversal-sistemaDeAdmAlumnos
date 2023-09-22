@@ -198,9 +198,7 @@ public class InscripcionData {
        ArrayList<Alumno> alumnosxmateria = new ArrayList<>();
         
         try {
-//            String sql = "SELECT a.idAlumno,dni,nombre,apellido,fechaNac,estado WHERE idAlumno"
-//                    +"FROM inscripcion i, alumno a WHERE i.idAlumno=a.idAlumno AND idMateria = ? AND a.estado=1";
-//Lo cambie porque me tiraba error. Corroboren si les pasa lo mismo.
+
             String sql = "SELECT a.idAlumno, a.dni, a.apellido, a.nombre, a.fechaNac, a.estado FROM `inscripcion`  "
                 + "JOIN alumno a ON(a.idAlumno=inscripcion.idAlumno)  "
                 + "JOIN materia m ON(m.idMateria=inscripcion.idMateria) WHERE inscripcion.idMateria= ?;" ;
@@ -211,12 +209,11 @@ public class InscripcionData {
                 Alumno axm = new Alumno();
                 axm.setIdAlumno(rs.getInt("idAlumno"));
                 axm.setDni(rs.getInt("dni"));
-                axm.setNombre("nombre");
-                axm.setApellido("apellido");
+                axm.setNombre(rs.getString("nombre"));
+                axm.setApellido(rs.getString("apellido"));
                 axm.setfNac(rs.getDate("fechaNac").toLocalDate());
                 axm.setEstado(rs.getBoolean("estado"));
-                alumnosxmateria.add(axm);
-                
+                alumnosxmateria.add(axm);                
             }
             ps.close();
             

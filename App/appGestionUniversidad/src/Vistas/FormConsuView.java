@@ -16,23 +16,30 @@ import javax.swing.table.DefaultTableModel;
  * @author @SimonettaDaniel
  */
 public class FormConsuView extends javax.swing.JInternalFrame {
-    DefaultTableModel modelo = new DefaultTableModel();
-    AlumnoData ad;
-    MateriaData md;
-    InscripcionData id;
+
+    DefaultTableModel modelo = new DefaultTableModel() {
+
+        public boolean isCellEditable(int f, int c) {
+            return false;
+        }
+
+    };
+    AlumnoData ad = new AlumnoData();
+    MateriaData md = new MateriaData();
+    InscripcionData id = new InscripcionData();
 
     /**
      * Creates new form FormConsuView
      */
- 
     public FormConsuView() {
         initComponents();
-        ad = new AlumnoData();
-        md = new MateriaData();
-        id = new InscripcionData();
+//        ad = new AlumnoData();
+//        md = new MateriaData();
+//        id = new InscripcionData();
+
         llenarCombo();
         armarCabecera();
-        //cargarTabla();
+        cargarTabla();
     }
 
     /**
@@ -94,7 +101,7 @@ public class FormConsuView extends javax.swing.JInternalFrame {
 
         jLabel4.setText("Seleccione una materia:");
 
-        jCBMaterias.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jCBMaterias.setModel(new javax.swing.DefaultComboBoxModel<>(new Materia[] {}));
         jCBMaterias.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 jCBMateriasItemStateChanged(evt);
@@ -172,19 +179,17 @@ public class FormConsuView extends javax.swing.JInternalFrame {
 
     private void jCBMateriasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCBMateriasActionPerformed
         // TODO add your handling code here:
-        cargarTabla();
+
     }//GEN-LAST:event_jCBMateriasActionPerformed
 
     private void jCBMateriasItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jCBMateriasItemStateChanged
-        // TODO add your handling code here:
-        //Tal vez sea por acá?
-        
+        cargarTabla();
     }//GEN-LAST:event_jCBMateriasItemStateChanged
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBSalirConsu;
-    private javax.swing.JComboBox<String> jCBMaterias;
+    private javax.swing.JComboBox<Materia> jCBMaterias;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -195,12 +200,7 @@ public class FormConsuView extends javax.swing.JInternalFrame {
     // End of variables declaration//GEN-END:variables
 
     private void armarCabecera() {
-        DefaultTableModel modelo = new DefaultTableModel() {
 
-            public boolean isCellEditable(int f, int c) {
-                return false;
-            }
-        };
         modelo.addColumn("ID");
         modelo.addColumn("DNI");
         modelo.addColumn("Apellido");
@@ -211,41 +211,36 @@ public class FormConsuView extends javax.swing.JInternalFrame {
         DefaultTableCellRenderer headerRenderer = (DefaultTableCellRenderer) jTMatList.getTableHeader().getDefaultRenderer();
         headerRenderer.setHorizontalAlignment(SwingConstants.CENTER);
     }
-    
+
     private void llenarCombo() {
         List<Materia> Lista = md.listarMaterias();
         jCBMaterias.removeAllItems();
-        for(int i = 0; i<Lista.size(); i++){
-            jCBMaterias.addItem(Lista.get(i).getNombre());
+        for (int i = 0; i < Lista.size(); i++) {
+            jCBMaterias.addItem(Lista.get(i));
         }
     }//Ahora funciona
     //hola
 
+    private void borrarFilas() {
+        int filas = modelo.getRowCount() - 1;
+        for (; filas >= 0; filas--) {
+            modelo.removeRow(filas);
+        }
+    }
+
     private void cargarTabla() {
-
-//        List<Alumno> Tabla = id.obtenerAlumnoXMateria((int)jCBMaterias.getSelectedIndex());
-//        DefaultTableModel modelo = new DefaultTableModel();
-//        modelo.setColumnIdentifiers(new Object[]{"ID","DNI","Apellido","Nombre"});
-//        if (Tabla!=null){
-//            for (Alumno alumno : Tabla){
-//                Object[] objeto = {alumno.getIdAlumno(), alumno.getDni(), alumno.getApellido(), alumno.getNombre()};
-//                modelo.addRow(objeto);
-//            }
-//        }
-
+        borrarFilas();
         Materia materiaSeleccionada = (Materia) jCBMaterias.getSelectedItem();
         int ID = materiaSeleccionada.getIdMateria();
-        if (materiaSeleccionada != null) {
+        List<Alumno> inscripciones = id.obtenerAlumnoXMateria(ID);
+        for (Alumno alu : inscripciones) {
 
-            List<Alumno> inscripciones = id.obtenerAlumnoXMateria(ID);
-            for (Alumno alu : inscripciones) {
-                modelo.addRow(new Object[]{
-                    alu.getIdAlumno(),
-                    alu.getDni(),
-                    alu.getApellido(),
-                    alu.getNombre()
-                });
-            }
+            modelo.addRow(new Object[]{
+                alu.getIdAlumno(),
+                alu.getDni(),
+                alu.getApellido(),
+                alu.getNombre()
+            });
         }
     }
 }

@@ -60,18 +60,20 @@ public class Materia {
 
     @Override
     public String toString() {
-        return "Materia{" + "idMateria=" + idMateria + ", nombre=" + nombre + ", ano=" + ano + ", estado=" + estado + '}';
+        return nombre+" - " + ano + "." ;
     }
     
     //para cuando se guarda en treeset se ordenen por id
     public int compareTo(Materia m) {
-        if(idMateria==m.idMateria){
-            return 0;
-        }else if(idMateria>m.idMateria){
-            return 1;
-        }else{
-            return -1;
-        }
+        //fijate si funciona esto
+        return Integer.compare(idMateria, m.idMateria);
+//        if(idMateria==m.idMateria){
+//            return 0;
+//        }else if(idMateria>m.idMateria){
+//            return 1;
+//        }else{
+//            return -1;
+//        }
     }
     
 }
