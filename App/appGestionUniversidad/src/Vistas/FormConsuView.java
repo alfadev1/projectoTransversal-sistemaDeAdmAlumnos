@@ -16,6 +16,7 @@ import javax.swing.table.DefaultTableModel;
  * @author @SimonettaDaniel
  */
 public class FormConsuView extends javax.swing.JInternalFrame {
+    DefaultTableModel modelo = new DefaultTableModel();
     AlumnoData ad;
     MateriaData md;
     InscripcionData id;
@@ -221,14 +222,29 @@ public class FormConsuView extends javax.swing.JInternalFrame {
     //hola
 
     private void cargarTabla() {
-        
-        List<Alumno> Tabla = id.obtenerAlumnoXMateria((int)jCBMaterias.getSelectedIndex());
-        DefaultTableModel modelo = new DefaultTableModel();
-        modelo.setColumnIdentifiers(new Object[]{"ID","DNI","Apellido","Nombre"});
-        if (Tabla!=null){
-            for (Alumno alumno : Tabla){
-                Object[] objeto = {alumno.getIdAlumno(), alumno.getDni(), alumno.getApellido(), alumno.getNombre()};
-                modelo.addRow(objeto);
+
+//        List<Alumno> Tabla = id.obtenerAlumnoXMateria((int)jCBMaterias.getSelectedIndex());
+//        DefaultTableModel modelo = new DefaultTableModel();
+//        modelo.setColumnIdentifiers(new Object[]{"ID","DNI","Apellido","Nombre"});
+//        if (Tabla!=null){
+//            for (Alumno alumno : Tabla){
+//                Object[] objeto = {alumno.getIdAlumno(), alumno.getDni(), alumno.getApellido(), alumno.getNombre()};
+//                modelo.addRow(objeto);
+//            }
+//        }
+
+        Materia materiaSeleccionada = (Materia) jCBMaterias.getSelectedItem();
+        int ID = materiaSeleccionada.getIdMateria();
+        if (materiaSeleccionada != null) {
+
+            List<Alumno> inscripciones = id.obtenerAlumnoXMateria(ID);
+            for (Alumno alu : inscripciones) {
+                modelo.addRow(new Object[]{
+                    alu.getIdAlumno(),
+                    alu.getDni(),
+                    alu.getApellido(),
+                    alu.getNombre()
+                });
             }
         }
     }

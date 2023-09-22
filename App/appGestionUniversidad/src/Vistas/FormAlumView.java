@@ -239,11 +239,8 @@ public class FormAlumView extends javax.swing.JInternalFrame {
             //alumnoBuscado.setDni(Integer.parseInt(jTDniAlum.getText()));
             alumnoBuscado.setApellido(jTApeAlum.getText());
             alumnoBuscado.setNombre(jTNomAlum.getText());
-
             alumnoBuscado.setfNac(jDfNac.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
-
             alumnoBuscado.setEstado(jRBestadoAlum.isSelected());
-
             ad.modificarAlumno(alumnoBuscado);
 
         } catch (NumberFormatException ex) {
@@ -288,9 +285,7 @@ public class FormAlumView extends javax.swing.JInternalFrame {
             int dni = Integer.parseInt(jTDniAlum.getText());
             String apellido = jTApeAlum.getText();
             String nombre = jTNomAlum.getText();
-
             LocalDate fNac = jDfNac.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-
             boolean estado = jRBestadoAlum.isSelected();
             Alumno alumno = new Alumno(nombre, apellido, dni, fNac, estado);
             ad.guardarAlumno(alumno);
