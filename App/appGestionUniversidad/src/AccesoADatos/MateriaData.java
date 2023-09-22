@@ -84,7 +84,7 @@ public class MateriaData {
                 materia.setEstado(true);
 
             } else {
-                JOptionPane.showMessageDialog(null, "No existe la materia");
+                JOptionPane.showMessageDialog(null, "No existe la materia con ese id");
             }
 
             ps.close();
@@ -150,7 +150,7 @@ public class MateriaData {
             ps.setInt(2, materia.getAno());
             int guardar = ps.executeUpdate();
             if (guardar == 1) {
-                JOptionPane.showMessageDialog(null, "Se modificó correctamente la materia");
+                JOptionPane.showMessageDialog(null, "Se modificó correctamente el nombre de la materia");
             }
 
         } catch (SQLException ex) {
@@ -167,7 +167,7 @@ public class MateriaData {
 
             int eliminar = ps.executeUpdate();
             if (eliminar == 1) {
-                JOptionPane.showMessageDialog(null, "La materia ha sido eliminada");
+                JOptionPane.showMessageDialog(null, "La materia con ese ID ha sido eliminada");
             }
 
         } catch (SQLException ex) {

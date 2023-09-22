@@ -1,12 +1,10 @@
 package Vistas;
 
-import AccesoADatos.AlumnoData;
-import AccesoADatos.InscripcionData;
-import Entidades.Alumno;
-import Entidades.Inscripcion;
-import Entidades.Materia;
+import AccesoADatos.*;
+import Entidades.*;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
@@ -16,6 +14,8 @@ import javax.swing.table.DefaultTableModel;
  * @author @SimonettaDaniel
  */
 public class FormNotasView extends javax.swing.JInternalFrame {
+    AlumnoData ad = new AlumnoData();
+    InscripcionData id = new InscripcionData();
     DefaultTableModel modelo = new DefaultTableModel() {
 
         public boolean isCellEditable(int f, int c) {
@@ -23,17 +23,15 @@ public class FormNotasView extends javax.swing.JInternalFrame {
         }
 
     };
-    AlumnoData ad = new AlumnoData();
-    InscripcionData id = new InscripcionData();
 
     /**
      * Creates new form FormNotasView
      */
     public FormNotasView() {
         initComponents();
-        llenarCombo();
         armarCabecera();
-        cargarTabla();
+        //llenarCombo(); TIRA ERROR
+        
     }
 
     /**
@@ -127,19 +125,18 @@ public class FormNotasView extends javax.swing.JInternalFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jBSalirNotas, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jCBAlumnos, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jBSaveNota, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(106, 106, 106))
-                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 347, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGap(0, 0, Short.MAX_VALUE))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jCBAlumnos, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 347, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(104, 104, 104)
+                .addComponent(jBSaveNota, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -150,12 +147,12 @@ public class FormNotasView extends javax.swing.JInternalFrame {
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jCBAlumnos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jBSaveNota, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jBSalirNotas, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -172,7 +169,7 @@ public class FormNotasView extends javax.swing.JInternalFrame {
 
     private void jCBAlumnosItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jCBAlumnosItemStateChanged
         // TODO add your handling code here:
-        cargarTabla();
+        //cargarTabla(); //INTENTA ABRIR buscarMateria
     }//GEN-LAST:event_jCBAlumnosItemStateChanged
 
 
@@ -199,9 +196,8 @@ public class FormNotasView extends javax.swing.JInternalFrame {
         modelo.addColumn("ID");
         modelo.addColumn("Nombre");
         modelo.addColumn("Nota");
-
         jTAluNota.setModel(modelo);
-
+        
         DefaultTableCellRenderer headerRenderer = (DefaultTableCellRenderer) jTAluNota.getTableHeader().getDefaultRenderer();
         headerRenderer.setHorizontalAlignment(SwingConstants.CENTER);
     }
@@ -212,14 +208,13 @@ public class FormNotasView extends javax.swing.JInternalFrame {
         for (Alumno alumno : lista) {
             jCBAlumnos.addItem(alumno);
         }
-
     }
     
     public void cargarTabla() {
         borrarFilas();
         Alumno alusele = (Alumno) jCBAlumnos.getSelectedItem();
-        int ALUM = alusele.getIdAlumno();
-            List<Inscripcion> inscripciones = id.obtenerInscripcionesPorAlumno(ALUM);
+        if (alusele != null) {
+            List<Inscripcion> inscripciones = id.obtenerInscripcionesPorAlumno(alusele.getIdAlumno());
             for (Inscripcion insc : inscripciones) {
                 Materia mat = insc.getMateria();
                 modelo.addRow(new Object[]{
@@ -228,7 +223,6 @@ public class FormNotasView extends javax.swing.JInternalFrame {
                     insc.getNota()
                 });
             }
-        
-
+        }
     }
 }
