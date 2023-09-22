@@ -4,13 +4,11 @@
  */
 package Vistas;
 
-import AccesoADatos.AlumnoData;
-import AccesoADatos.InscripcionData;
-import AccesoADatos.MateriaData;
-import Entidades.Alumno;
-import Entidades.Materia;
+import AccesoADatos.*;
+import Entidades.*;
 import java.util.List;
 import javax.swing.ButtonGroup;
+import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
@@ -21,7 +19,6 @@ import javax.swing.text.html.parser.DTDConstants;
  * @author @SimonettaDaniel
  */
 public class FormInscripcionesView extends javax.swing.JInternalFrame {
-
     AlumnoData ad = new AlumnoData();
     InscripcionData id = new InscripcionData();
     MateriaData md = new MateriaData();
@@ -226,6 +223,15 @@ public class FormInscripcionesView extends javax.swing.JInternalFrame {
 
     private void jBInscActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBInscActionPerformed
         // TODO add your handling code here:
+        try {
+            int insc = jTInsc.getSelectedRow();
+            Materia mat = new Materia((int) modelo.getValueAt(insc, 0), (String) modelo.getValueAt(insc, 1), (int) modelo.getValueAt(insc, 2), true);
+            double nota = 0;
+            Inscripcion ins = new Inscripcion((Alumno) jCBAlumnos.getSelectedItem(), mat, nota);
+            id.guardarInscripcion(ins);
+        } catch (ArrayIndexOutOfBoundsException e) {
+            JOptionPane.showMessageDialog(this, "Datos sin seleccionar");
+        }
     }//GEN-LAST:event_jBInscActionPerformed
 
     private void jBAnuInscActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAnuInscActionPerformed
