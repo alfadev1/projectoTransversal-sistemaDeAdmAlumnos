@@ -7,6 +7,8 @@ import Entidades.Inscripcion;
 import Entidades.Materia;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.SwingConstants;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -29,7 +31,9 @@ public class FormNotasView extends javax.swing.JInternalFrame {
      */
     public FormNotasView() {
         initComponents();
-        //llenarCombo();
+        llenarCombo();
+        armarCabecera();
+        cargarTabla();
     }
 
     /**
@@ -47,8 +51,8 @@ public class FormNotasView extends javax.swing.JInternalFrame {
         jBSaveNota = new javax.swing.JButton();
         jBSalirNotas = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
-        jCBAlum = new javax.swing.JComboBox<>();
+        jTAluNota = new javax.swing.JTable();
+        jCBAlumnos = new javax.swing.JComboBox<>();
 
         setClosable(true);
         setMaximizable(true);
@@ -92,7 +96,7 @@ public class FormNotasView extends javax.swing.JInternalFrame {
             }
         });
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        jTAluNota.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -103,9 +107,14 @@ public class FormNotasView extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane2.setViewportView(jTable2);
+        jScrollPane2.setViewportView(jTAluNota);
 
-        jCBAlum.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jCBAlumnos.setModel(new javax.swing.DefaultComboBoxModel<>(new Alumno[] {}));
+        jCBAlumnos.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jCBAlumnosItemStateChanged(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -122,7 +131,7 @@ public class FormNotasView extends javax.swing.JInternalFrame {
                         .addGroup(layout.createSequentialGroup()
                             .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jCBAlum, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jCBAlumnos, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGroup(layout.createSequentialGroup()
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                 .addGroup(layout.createSequentialGroup()
@@ -139,7 +148,7 @@ public class FormNotasView extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jCBAlum, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jCBAlumnos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -161,16 +170,21 @@ public class FormNotasView extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jBSaveNotaActionPerformed
 
+    private void jCBAlumnosItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jCBAlumnosItemStateChanged
+        // TODO add your handling code here:
+        cargarTabla();
+    }//GEN-LAST:event_jCBAlumnosItemStateChanged
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBSalirNotas;
     private javax.swing.JButton jBSaveNota;
-    private javax.swing.JComboBox<Alumno> jCBAlum;
+    private javax.swing.JComboBox<Alumno> jCBAlumnos;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable2;
+    private javax.swing.JTable jTAluNota;
     // End of variables declaration//GEN-END:variables
     
     public void borrarFilas() {
@@ -179,30 +193,42 @@ public class FormNotasView extends javax.swing.JInternalFrame {
             modelo.removeRow(f);
         }
     }
+    
+    private void armarCabecera() {
+
+        modelo.addColumn("ID");
+        modelo.addColumn("Nombre");
+        modelo.addColumn("Nota");
+
+        jTAluNota.setModel(modelo);
+
+        DefaultTableCellRenderer headerRenderer = (DefaultTableCellRenderer) jTAluNota.getTableHeader().getDefaultRenderer();
+        headerRenderer.setHorizontalAlignment(SwingConstants.CENTER);
+    }
 
     private void llenarCombo() {
         List<Alumno> lista = ad.listarAlumnos();
-        jCBAlum.removeAllItems();
+        jCBAlumnos.removeAllItems();
         for (Alumno alumno : lista) {
-            jCBAlum.addItem(alumno);
+            jCBAlumnos.addItem(alumno);
         }
 
     }
     
-//    public void cargarTabla() {
-//        borrarFilas();
-//        Alumno alusele = (Alumno) jCBAlum.getSelectedItem();
-//        if (alusele != null) {
-//            List<Inscripcion> inscripciones = id.obtenerInscripcionesPorAlumno(alusele.getIdAlumno());
-//            for (Inscripcion insc : inscripciones) {
-//                Materia mat = insc.getMateria();
-//                modelo.addRow(new Object[]{
-//                    mat.getIdMateria(),
-//                    mat.getNombre(),
-//                    insc.getNota()
-//                });
-//            }
-//        }
-//
-//    }
+    public void cargarTabla() {
+        borrarFilas();
+        Alumno alusele = (Alumno) jCBAlumnos.getSelectedItem();
+        int ALUM = alusele.getIdAlumno();
+            List<Inscripcion> inscripciones = id.obtenerInscripcionesPorAlumno(ALUM);
+            for (Inscripcion insc : inscripciones) {
+                Materia mat = insc.getMateria();
+                modelo.addRow(new Object[]{
+                    mat.getIdMateria(),
+                    mat.getNombre(),
+                    insc.getNota()
+                });
+            }
+        
+
+    }
 }
