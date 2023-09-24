@@ -18,11 +18,9 @@ import javax.swing.table.DefaultTableModel;
 public class FormConsuView extends javax.swing.JInternalFrame {
 
     DefaultTableModel modelo = new DefaultTableModel() {
-
         public boolean isCellEditable(int f, int c) {
             return false;
         }
-
     };
     AlumnoData ad = new AlumnoData();
     MateriaData md = new MateriaData();
