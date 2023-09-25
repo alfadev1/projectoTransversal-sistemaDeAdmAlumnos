@@ -30,7 +30,7 @@ public class FormNotasView extends javax.swing.JInternalFrame {
     public FormNotasView() {
         initComponents();
         armarCabecera();
-        //llenarCombo(); TIRA ERROR
+        llenarCombo();
         
     }
 
@@ -169,7 +169,7 @@ public class FormNotasView extends javax.swing.JInternalFrame {
 
     private void jCBAlumnosItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jCBAlumnosItemStateChanged
         // TODO add your handling code here:
-        //cargarTabla(); //INTENTA ABRIR buscarMateria
+        cargarTabla(); //INTENTA ABRIR buscarMateria
     }//GEN-LAST:event_jCBAlumnosItemStateChanged
 
 

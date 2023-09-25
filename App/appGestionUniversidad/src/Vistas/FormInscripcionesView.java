@@ -19,6 +19,7 @@ import javax.swing.text.html.parser.DTDConstants;
  * @author @SimonettaDaniel
  */
 public class FormInscripcionesView extends javax.swing.JInternalFrame {
+
     AlumnoData ad = new AlumnoData();
     InscripcionData id = new InscripcionData();
     MateriaData md = new MateriaData();
@@ -229,18 +230,22 @@ public class FormInscripcionesView extends javax.swing.JInternalFrame {
             double nota = 0;
             Inscripcion ins = new Inscripcion((Alumno) jCBAlumnos.getSelectedItem(), mat, nota);
             id.guardarInscripcion(ins);
+            jRBNoInscActionPerformed(evt);
         } catch (ArrayIndexOutOfBoundsException e) {
             JOptionPane.showMessageDialog(this, "Datos sin seleccionar");
         }
+
+
     }//GEN-LAST:event_jBInscActionPerformed
 
     private void jBAnuInscActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAnuInscActionPerformed
         // TODO add your handling code here:
         try {
             int insc = jTInsc.getSelectedRow();
-            Alumno alu= (Alumno)jCBAlumnos.getSelectedItem();
-             Materia mat=new Materia((int)modelo.getValueAt(insc, 0), (String)modelo.getValueAt(insc, 1),(int)modelo.getValueAt(insc, 2),true);
-             id.borrarInscripcionMateriaAlumno(alu.getIdAlumno(), mat.getIdMateria());
+            Alumno alu = (Alumno) jCBAlumnos.getSelectedItem();
+            Materia mat = new Materia((int) modelo.getValueAt(insc, 0), (String) modelo.getValueAt(insc, 1), (int) modelo.getValueAt(insc, 2), true);
+            id.borrarInscripcionMateriaAlumno(alu.getIdAlumno(), mat.getIdMateria());
+            jRBInscActionPerformed(evt);
         } catch (ArrayIndexOutOfBoundsException e) {
             JOptionPane.showMessageDialog(this, "Datos sin seleccionar");
         }

@@ -115,8 +115,9 @@ public class InscripcionData {
         ArrayList<Inscripcion> cursadas = new ArrayList<>();
         
         try {
-            String sql = "SELECT * FROM Inscripcion WHERE idAlumno";
+            String sql = "SELECT * FROM Inscripcion WHERE idAlumno = ?";
             PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            ps.setInt(1, idAlumno);
             ResultSet rs=ps.executeQuery();
             while (rs.next()) {
                 Inscripcion insc = new Inscripcion();
@@ -125,7 +126,7 @@ public class InscripcionData {
                 Materia mat = md.buscarMateriaPorId(rs.getInt("idMateria"));
                 insc.setAlumno(alu);
                 insc.setMateria(mat);
-                insc.setNota(rs.getDouble("Nota"));
+                insc.setNota(rs.getDouble("nota"));
                 cursadas.add(insc);
             }
             ps.close();
