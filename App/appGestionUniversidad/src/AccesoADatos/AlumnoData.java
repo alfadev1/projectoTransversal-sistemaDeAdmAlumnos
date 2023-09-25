@@ -109,7 +109,6 @@ public class AlumnoData {
                 alumno.setNombre(rs.getString("nombre"));
                 alumno.setfNac(rs.getDate("fechaNac").toLocalDate());
                 alumno.setEstado(true);
-                System.out.println(alumno.getIdAlumno());
             } else {
                 JOptionPane.showMessageDialog(null, "No existe el alumno");
                 return null;

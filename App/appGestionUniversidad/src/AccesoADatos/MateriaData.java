@@ -98,7 +98,7 @@ public class MateriaData {
     
     public Materia buscarMateria(String nombre) {
         Materia materia = null;
-        String sql = "SELECT nombre, ano, idMateria FROM Materia WHERE nombre = ? AND estado = 1";
+        String sql = "SELECT nombre, ano, idMateria, estado FROM Materia WHERE nombre = ?";
         PreparedStatement ps = null;
         try {
             ps = con.prepareStatement(sql);
@@ -110,7 +110,7 @@ public class MateriaData {
                 materia.setIdMateria(rs.getInt("idMateria"));
                 materia.setNombre(nombre);
                 materia.setAno(rs.getInt("ano"));
-                materia.setEstado(true);
+                materia.setEstado(rs.getBoolean("estado"));
 
             } else {
                 JOptionPane.showMessageDialog(null, "No existe la materia");

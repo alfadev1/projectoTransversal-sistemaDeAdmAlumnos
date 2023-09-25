@@ -218,6 +218,8 @@ public class FormMateriaView extends javax.swing.JInternalFrame {
             jBModificar.enable();
             jBEliminar.enable();
             id = materiaBuscada.getIdMateria();
+            jBEliminar.setEnabled(true);
+            jBModificar.setEnabled(true);
             
         }      
     }//GEN-LAST:event_jBBuscarActionPerformed
@@ -229,6 +231,7 @@ public class FormMateriaView extends javax.swing.JInternalFrame {
             if (nombre != null ) {
                 mat.eliminarMateriaxNombre(nombre);
                 jBEliminar.disable();
+                limpiarCampos();
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "campos vacios");
