@@ -19,7 +19,8 @@ public class FormNotasView extends javax.swing.JInternalFrame {
     DefaultTableModel modelo = new DefaultTableModel() {
 
         public boolean isCellEditable(int f, int c) {
-            return false;
+            
+            return c == 2;
         }
 
     };
