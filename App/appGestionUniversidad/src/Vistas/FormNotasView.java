@@ -165,11 +165,32 @@ public class FormNotasView extends javax.swing.JInternalFrame {
 
     private void jBSaveNotaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBSaveNotaActionPerformed
         // TODO add your handling code here:
+        Alumno alusele = (Alumno) jCBAlumnos.getSelectedItem();
+        try {
+            if (alusele!=null){
+                List <Inscripcion> Inscriptos = id.obtenerInscripcionesPorAlumno(alusele.getIdAlumno());
+                int cont=0;
+                for(Inscripcion Inscripcion : Inscriptos){
+                    String notaA = modelo.getValueAt(cont, 2).toString();
+                    double notaB = Double.parseDouble(notaA);
+                    if(notaB >=0 && notaB <=10){
+                        if (notaB != Inscripcion.getNota()){
+                            id.actualizarNota(alusele.getIdAlumno(), Inscripcion.getMateria().getIdMateria(), notaB);
+                        }
+                    }else {
+                        JOptionPane.showMessageDialog(this, "La nota debe estar entre 0 a 10");  
+                    }
+                    cont++;
+                }
+            }
+        } catch (ArrayIndexOutOfBoundsException e) {
+            JOptionPane.showMessageDialog(this, "Datos sin seleccionar");
+        }
     }//GEN-LAST:event_jBSaveNotaActionPerformed
 
     private void jCBAlumnosItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jCBAlumnosItemStateChanged
         // TODO add your handling code here:
-        cargarTabla(); //INTENTA ABRIR buscarMateria
+        cargarTabla();
     }//GEN-LAST:event_jCBAlumnosItemStateChanged
 
 
