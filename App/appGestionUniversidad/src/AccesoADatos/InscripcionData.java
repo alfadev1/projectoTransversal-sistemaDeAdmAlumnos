@@ -78,6 +78,8 @@ public class InscripcionData {
             int filas = ps.executeUpdate();
             if (filas>0) {
                 JOptionPane.showMessageDialog(null, "Inscripcion eliminada");          
+            } else {
+                JOptionPane.showMessageDialog(null, "Deben seleccionarse materias inscriptas");
             }
             ps.close();
             
