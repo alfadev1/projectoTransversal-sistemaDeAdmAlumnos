@@ -30,6 +30,7 @@ public class MainMenu extends javax.swing.JFrame {
     public MainMenu() {
         initComponents();
         setLocationRelativeTo(null);
+        this.setResizable(false);
         this.setTitle("Administracion Universidad ULP v6.9.4.2.0");
         
     }
