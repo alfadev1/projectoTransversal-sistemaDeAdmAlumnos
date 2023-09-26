@@ -252,7 +252,8 @@ public class FormAlumView extends javax.swing.JInternalFrame {
 
     private void jbBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBuscarActionPerformed
 
-        Alumno alumnoBuscado = ad.buscarAlumnoDni(Integer.parseInt(jTDniAlum.getText()));
+        try {
+            Alumno alumnoBuscado = ad.buscarAlumnoDni(Integer.parseInt(jTDniAlum.getText()));
 
         if (alumnoBuscado != null) {
             jTApeAlum.setText(alumnoBuscado.getApellido());
@@ -268,6 +269,14 @@ public class FormAlumView extends javax.swing.JInternalFrame {
             jRBestadoAlum.setSelected(false);
             jDfNac.setDate(null);
         }
+
+            
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "Error campos vacios o erroneos");
+            jTDniAlum.setText("");
+            jTDniAlum.requestFocus();
+        }
+        
     }//GEN-LAST:event_jbBuscarActionPerformed
 
     private void jBSalirAlumnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBSalirAlumnoActionPerformed

@@ -186,6 +186,8 @@ public class FormNotasView extends javax.swing.JInternalFrame {
             }
         } catch (ArrayIndexOutOfBoundsException e) {
             JOptionPane.showMessageDialog(this, "Datos sin seleccionar");
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "Error campos vacios o erroneos");
         }
     }//GEN-LAST:event_jBSaveNotaActionPerformed
 
