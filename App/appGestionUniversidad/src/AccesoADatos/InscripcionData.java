@@ -144,10 +144,13 @@ public class InscripcionData {
         
         String sql = "SELECT inscripcion.idMateria, nombre, ano FROM inscripcion JOIN materia "
                 + "ON(inscripcion.idMateria=materia.idMateria) WHERE inscripcion.idAlumno = ?;";
+        
 //      String sql = "SELECT inscripcion.idMateria, nombre, ano FROM inscripcion,"
 //                + "materia WHERE inscripcion.idMateria = materia.idMateria"
 //                + "AND inscripcion.idAlumno = ?;";
-//Asi lo implementa el pelado
+
+//Implementacion alternativa
+
         try {
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, idAlumno);
@@ -177,8 +180,10 @@ public class InscripcionData {
                 + "    FROM Inscripcion I\n"
                 + "    WHERE I.idAlumno = ?\n"
                 + ");";
+        
 //      String sql = "SELECT * FROM materia WHERE estado = 1 AND idMateria not in"
 //                + "(SELECT idMateria FROM inscripcion WHERE idAlumno = ?)";
+
         try {
             PreparedStatement ps = con.prepareStatement(sql);            
             ps.setInt(1, id);

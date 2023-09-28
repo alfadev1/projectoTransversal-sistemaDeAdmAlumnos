@@ -1,8 +1,4 @@
 package AccesoADatos;
-//hola
-//test
-//holav2
-//holav3AhoraEsPersonal
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -42,7 +38,6 @@ public class Conexion {
            conexion= new Conexion();
         }
         try {
-            // Setup the connection with the DB
             con = DriverManager.getConnection(url + "?useLegacyDatetimeCode=false&serverTimezone=UTC" + "&user=" + usuario + "&password=" + password);
             //JOptionPane.showMessageDialog(null, "conectado");
             

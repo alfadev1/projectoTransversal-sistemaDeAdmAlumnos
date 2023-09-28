@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package AccesoADatos;
 
 /**
@@ -159,8 +155,6 @@ public class AlumnoData {
             ps.setDate(3, Date.valueOf(alumno.getfNac()));
             ps.setBoolean(4, alumno.isEstado());
             ps.setInt(5, alumno.getIdAlumno());
-            //se ejecuta la sentencia
-            //el executeUpdate devuelve un entero
             int guardar = ps.executeUpdate();
             if (guardar == 1) {
                 JOptionPane.showMessageDialog(null, "Se modificaron correctamente los datos");
